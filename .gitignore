@@ -1,1 +1,5 @@
 *.pyc
+wxanalyzer/build/
+wxanalyzer/dist/
+wxanalyzer/wxanalyzer.egg-info/
+

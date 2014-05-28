@@ -9,7 +9,8 @@ def read(*paths):
 #enddef
 
 requirements = [
-    "beautifulsoup",
+    "Pillow",
+    "BeautifulSoup"
 ]
 
 setup(
@@ -17,7 +18,8 @@ setup(
     version='0.1.0',
     packages = find_packages(exclude=['tests*']),
     install_requires = requirements,
-    dependency_links = ['git+https://github.com/Hypernode/M2Crypto#egg=M2Crypto-0.22.dev',
+    dependency_links = ['git+git://github.com/python-imaging/Pillow.git',
+                        'git+https://github.com/Hypernode/M2Crypto#egg=M2Crypto-0.22.dev',
                         'git+https://github.com/andymccurdy/redis-py.git@976e72be529fdf741b75a71746f34c6530fc8ae9#egg=redis-dev'],    
     description='Dealing with url webpages using lots of fantastic algorithms.',
     long_description=(read('README.rst') + '\n\n' +
@@ -43,7 +45,7 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
-        'Topic :: Software Development :: Libraries :: Python Modules',
+        'Topic :: Software Development :: Libraries :: Python Modules'
     ],
     entry_points = '''
     '''

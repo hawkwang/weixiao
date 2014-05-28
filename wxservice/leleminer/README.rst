@@ -5,11 +5,11 @@ leleminer is providing web services through RESTful API:
 
 .. code-block:: shell
 
-   curl -u hawkwang:1111111 -i http://localhost:5000/todo/api/v1.0/tasks
+   curl -u hawkwang:1111111 -i http://localhost:5001/todo/api/v1.0/tasks
 
-   curl -u hawkwang:1111111 -i http://localhost:5000/todo/api/v1.0/tasks/2
+   curl -u hawkwang:1111111 -i http://localhost:5001/todo/api/v1.0/tasks/2
 
-   curl -u hawkwang:1111111 -i -H "Content-Type: application/json" -X POST -d '{"title":"Read a book"}' http://localhost:5000/todo/api/v1.0/tasks
+   curl -u hawkwang:1111111 -i -H "Content-Type: application/json" -X POST -d '{"title":"Read a book"}' http://localhost:5001/todo/api/v1.0/tasks
 
 Package & Usage
 -----------

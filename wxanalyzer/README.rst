@@ -40,3 +40,5 @@ Usage with virtualenv
 5. Install the wxanalyzer package
    ``pip install --no-index /wxanalyzer/dist/wxanalyzer-0.1.0.tar.gz``
 6. Great, we can use the API call, see previous section.
+7. If not needed, use ``pip uninstall wxanalyzer`` to uninstall it. 
+(When the code is updated and packaged again, we need to do this first and then install again.)

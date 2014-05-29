@@ -24,6 +24,13 @@ def to_unicode_or_bust(obj, encoding='utf-8'):
     return obj
 #enddef
 
+def to_utf8(obj):
+    if isinstance(obj, basestring):
+        if isinstance(obj, unicode):
+            obj = obj.encode('utf-8')
+    return obj
+#enddef
+
 def get_encoding(htmlcontent):
     encod = getmatch('charset\s*=\s*\S*"', htmlcontent)
     if encod != False:
@@ -245,27 +252,27 @@ def getEvent(url):
     msg = u'ok'
     try:
         htmlcontent, soup = getHTML(url)
-        event['url'] = url
+        event['url'] = to_utf8(url)
         #get title
         title = soup.title.string
-        event['title'] = title
+        event['title'] = to_utf8(title)
         #get description
         description = getDescription(soup)
-        event['description'] = description
+        event['description'] = to_utf8(description)
         #get pure text content
         content = getPureText(soup)
         #get time statement
         timesection = getTimeSection(content)
-        event['date'] = getDate(timesection)
-        event['time'] = getTime(timesection)
+        event['date'] = to_utf8(getDate(timesection))
+        event['time'] = to_utf8(getTime(timesection))
         #get city
-        event['city'] = getCity(title, description, content)
+        event['city'] = to_utf8(getCity(title, description, content))
         #get location
-        event['location'] = getLocation(content)
+        event['location'] = to_utf8(getLocation(content))
         #get image url
-        event['image'] = getBiggestImage(url,soup,htmlcontent)
+        event['image'] = to_utf8(getBiggestImage(url,soup,htmlcontent))
         #get fee information
-        event['fee'] = getFee(content)
+        event['fee'] = to_utf8(getFee(content))
     except Exception as e:
         success = 0
         msg = str(e)

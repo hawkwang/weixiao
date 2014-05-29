@@ -1,5 +1,9 @@
 #!flask/bin/python
+# -*- coding: utf-8 -*-
+
 from flask import Flask, jsonify, abort, make_response, request
+from wxanalyzer.webpage.event import getEvent
+import json
 
 app = Flask(__name__)
 
@@ -30,6 +34,27 @@ def get_password(username):
 @auth.error_handler
 def unauthorized():
     return make_response(jsonify( { 'error': 'Unauthorized access' } ), 403)
+
+#for event
+@app.route('/todo/api/v1.0/events', methods = ['POST'])
+@auth.login_required
+def get_event():
+    if not request.json or not 'url' in request.json:
+        abort(400)
+    url = request.json['url']
+    success,msg,e = getEvent(url)
+    result = {
+        'success': success,
+        'msg': msg,
+        'event': e
+    }
+
+    #return json.dumps(result), 201
+    #return jsonify({'event': e['title']}), 201
+    return jsonify( { 'result': result, 'event': e['title'] } ), 201
+#end def
+
+
 
 @app.route('/todo/api/v1.0/tasks', methods = ['GET'])
 @auth.login_required

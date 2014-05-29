@@ -5,7 +5,7 @@ import sys, os
 import re
 import string
 import httplib, urlparse
-import ImageFile
+from PIL import ImageFile
 from urlparse import urljoin
 from collections import OrderedDict
 from BeautifulSoup import BeautifulSoup
@@ -25,7 +25,6 @@ def to_unicode_or_bust(obj, encoding='utf-8'):
 #enddef
 
 def get_encoding(htmlcontent):
-    encod = 'utf-8'
     encod = getmatch('charset\s*=\s*\S*"', htmlcontent)
     if encod != False:
         encod = re.sub('(charset\s*=|"|\s)','',encod)
@@ -36,6 +35,7 @@ def get_encoding(htmlcontent):
         encod = re.sub('(Charset\s*=|"|\s)','',encod)
         return encod
     #endif
+    encod = 'utf-8'
     return encod
 #enddef
 
@@ -99,7 +99,7 @@ def getmatch(pattern, content):
 #enddef
 
 def getTimeSection(content):
-    pattern = u'(演 *出 *时 *间|时 *间).*(\d{4}-\d{2}-\d{2}|\d{4}年\d{1,2}月\d{1,2}日).*\d{1,2}:\d{1,2}'
+    pattern = u'(演 *出 *时 *间|时 *间).*(\d{4}-\d{2}-\d{2}|\d{4}\.\d{2}\.\d{2}|\d{4}年\d{1,2}月\d{1,2}日).*\d{1,2}:\d{1,2}'
     time_result = getmatch(pattern, content)
     return time_result
 #enddef
@@ -107,9 +107,9 @@ def getTimeSection(content):
 def getDate(content):
     if (content==False):
         return ''
-    pattern = u'(\d{4}-\d{2}-\d{2}|\d{4}年\d{1,2}月\d{1,2}日)'
+    pattern = u'(\d{4}-\d{2}-\d{2}|\d{4}\.\d{2}\.\d{2}|\d{4}年\d{1,2}月\d{1,2}日)'
     date_result = getmatch(pattern, content)
-    date_result = re.sub(u'(年|月|日)','-',date_result)
+    date_result = re.sub(u'(年|月|日|\.)','-',date_result)
     date_result = getmatch(u'\d{4}-\d{2}-\d{2}', date_result)
     return date_result
 #enddef

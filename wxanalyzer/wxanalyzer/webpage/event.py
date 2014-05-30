@@ -278,6 +278,6 @@ def getEvent(url):
         msg = str(e)
     #endtry
     
-    return success, msg, event  
+    return success, msg.encode('utf-8'), event  
 #enddef
 

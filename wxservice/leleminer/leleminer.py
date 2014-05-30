@@ -49,9 +49,16 @@ def get_event():
         'event': e
     }
 
+    strEvent = str(success) + '||' + msg 
+    if success==1:
+        strEvent = strEvent + '||' + e['city'] + '||' + e['title'] + '||' + e['description']
+        strEvent = strEvent + '||' + e['date'] + '||' + e['time']
+        strEvent = strEvent + '||' + e['location'] + '||' + e['fee']
+        strEvent = strEvent + '||' + e['image'] + '||' + e['url']
+    return strEvent, 201
     #return json.dumps(result), 201
     #return jsonify({'event': e['title']}), 201
-    return jsonify( { 'result': result, 'event': e['title'] } ), 201
+    #return jsonify( { 'result': result, 'event': e['title'] } ), 201
 #end def
 
 

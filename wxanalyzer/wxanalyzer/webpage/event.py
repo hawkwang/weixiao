@@ -3,8 +3,11 @@
 import urllib, urllib2
 import sys, os
 import re
+import time
 import string
+import threading
 import httplib, urlparse
+from sets import Set
 from PIL import ImageFile
 from urlparse import urljoin
 from collections import OrderedDict
@@ -171,11 +174,78 @@ def getFee(content):
     return fee
 #enddef
 
+class ImageAnalyzer (threading.Thread):
+    def __init__(self, url):
+        threading.Thread.__init__(self)
+        self.url = url
+        self.size = 0
+    #enddef
+
+    def run(self):
+        self.size = getImageSize(self.url)
+        print self.size, self.url
+    #enddef
+
+#end class
+
+def getBiggestImageYet(baseurl, soup, htmlcontent):
+    print "starting at %s" % (time.ctime(time.time()))
+    imageurls = Set([])
+    for tag in soup.findAll('img', src=True):
+        image_url = urlparse.urljoin(baseurl, tag['src'])
+        image_url = re.sub(u'\.\.','',image_url)
+        imageurls.add(image_url)
+    #endfor
+    #get background-image
+    pattern = 'background-image\s*:\s*url\s*(.*);'
+    background_images =  re.findall(pattern, htmlcontent)
+    for item in background_images:
+        try:
+            item = re.sub( '[()]', '', item)
+            if(item[1]=='/'):
+                item_url = 'http:' + item
+            else:
+                item_url = urlparse.urljoin(baseurl, item_url)
+            #endif
+            imageurls.add(item_url)
+        except:
+            continue
+        #endtry
+    #endfor
+    #use multithread to deal with the size problem
+    threads = []
+    for image_url in imageurls:
+        #print image_url
+        thread = ImageAnalyzer(image_url)
+        thread.start()
+        threads.append(thread)
+    #endfor
+    #wait for all threads to complete
+    for t in threads:
+        t.join()
+    #endfor
+    images = {};
+    for t in threads:
+        images[t.url] = t.size;
+        #print t.size, t.url
+    #endfor 
+    if(len(images)==0):
+        return u''
+    #sort to get top one, FIXME, we can get top N
+    d_sorted_by_value = OrderedDict(sorted(images.items(), key=lambda x: x[1]))
+    items = d_sorted_by_value.items()
+    items.reverse()
+    print "ending at %s" % (time.ctime(time.time()))
+    return items[0][0]
+#enddef
+
 def getBiggestImage(baseurl, soup, htmlcontent):
+    print "starting at %s" % (time.ctime(time.time()))
     images = {};
     for tag in soup.findAll('img', src=True):
         try:
             image_url = urlparse.urljoin(baseurl, tag['src'])
+            image_url = re.sub(u'\.\.','',image_url)
             image_size = getImageSize(image_url)
             images[image_url] = image_size
             #print image_url
@@ -201,11 +271,12 @@ def getBiggestImage(baseurl, soup, htmlcontent):
         #endtry
     #endfor
     if(len(images)==0):
-        return images
+        return ''
     #sort to get top one, FIXME, we can get top N
     d_sorted_by_value = OrderedDict(sorted(images.items(), key=lambda x: x[1]))
     items = d_sorted_by_value.items()
     items.reverse()
+    print "ending at %s" % (time.ctime(time.time()))
     return items[0][0]
 #enddef
 
@@ -251,7 +322,12 @@ def getEvent(url):
     success = 1
     msg = u'ok'
     try:
-        htmlcontent, soup = getHTML(url)
+        try:
+            htmlcontent, soup = getHTML(url)
+        except:
+            url = 'http://' + url
+            htmlcontent, soup = getHTML(url)
+        #endtry
         event['url'] = to_utf8(url)
         #get title
         title = soup.title.string
@@ -270,7 +346,7 @@ def getEvent(url):
         #get location
         event['location'] = to_utf8(getLocation(content))
         #get image url
-        event['image'] = to_utf8(getBiggestImage(url,soup,htmlcontent))
+        event['image'] = to_utf8(getBiggestImageYet(url,soup,htmlcontent))
         #get fee information
         event['fee'] = to_utf8(getFee(content))
     except Exception as e:

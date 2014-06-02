@@ -145,10 +145,11 @@ def getTime(content):
 
 def getLocation(content):
     place = u''
-    pattern = u'(地\s*点|场\s*馆)(:|：)(\s|\u200b)+([\u4e00-\u9fa5])+'
+    pattern = u'(地\s*点|场\s*馆|场\s*地)(:|：)(\s|\u200b)+([\u4e00-\u9fa5]|[\uff08-\uff09])+'
     place_result = getmatch( pattern, content)
     if(place_result!=False):
-        place1 = getmatch(u'( |\u200b)+([\u4e00-\u9fa5])+',place_result)
+        place1 = getmatch(u'(\s|\u200b)+([\u4e00-\u9fa5]|[\uff08-\uff09])+',place_result)
+        place1 = re.sub(u'(\uff08|\uff09)','',place1)
         place = getmatch(u'([\u4e00-\u9fa5])+',place1)
         show(place_result)
         show(place1)
@@ -177,10 +178,13 @@ def getCity(title, description, content):
 
 def getFee(content):
     fee = '0'
-    pattern =u'(价\s*格|费\s*用)\s*(:|：)\D*\d{1,}'
+    pattern =u'(价\s*格|费\s*用)\s*(:|：)\s*(待\s*定|免\s*费|\D*\d{1,})'
     fee_result = getmatch(pattern, content) 
     if(fee_result != False):
         fee = getmatch(u'\d{1,}', fee_result)
+        if(fee==False):
+            return '0'
+        #endif
     #endif
     return fee
 #enddef

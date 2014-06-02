@@ -109,7 +109,7 @@ def getmatch(pattern, content):
 #enddef
 
 def getTimeSection(content):
-    pattern = u'(演 *出 *时 *间|时 *间).*(\d{4}-\d{2}-\d{2}|\d{4}\.\d{2}\.\d{2}|\d{4}年\d{1,2}月\d{1,2}日).*\d{1,2}:\d{1,2}'
+    pattern = u'(\d{4}-\d{2}-\d{2}|\d{4}\.\d{2}\.\d{2}|\d{4}年\d{1,2}月\d{1,2}日).*\d{1,2}:\d{1,2}'
     time_result = getmatch(pattern, content)
     return time_result
 #enddef
@@ -178,8 +178,18 @@ def getCity(title, description, content):
 
 def getFee(content):
     fee = '0'
-    pattern =u'(价\s*格|费\s*用)\s*(:|：)\s*(待\s*定|免\s*费|\D*\d{1,})'
-    fee_result = getmatch(pattern, content) 
+    pattern =u'(价\s*位|价\s*格|费\s*用|票\s*价)\s*(:|：)\s*(待\s*定|免\s*费|\D*\d{1,})'
+    fee_result = getmatch(pattern, content)
+    if(fee_result==False):
+        return fee
+    #endif
+    tmpcontent = re.sub(fee_result,'', content)
+    fee_result1 = getmatch(pattern, tmpcontent)
+    if(fee_result1!=False):
+        if(len(fee_result1)<len(fee_result)):
+            fee_result = fee_result1
+        #endif
+    #endif
     if(fee_result != False):
         fee = getmatch(u'\d{1,}', fee_result)
         if(fee==False):
@@ -358,7 +368,13 @@ def getEvent(url):
             timesection = htmlcontent
         #endif
         event['date'] = to_utf8(getDate(timesection))
+        if(event['date']==''):
+            event['date'] = to_utf8(getDate(content))
+        #endif
         event['time'] = to_utf8(getTime(timesection))
+        if(event['time']==''):
+            event['time'] = to_utf8(getTime(content))
+        #endif
         #get city
         event['city'] = to_utf8(getCity(title, description, content))
         #get location

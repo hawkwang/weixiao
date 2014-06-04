@@ -35,6 +35,13 @@ Target Code (tcode)
 2 - 乐友
  - 
 
+Prepare with PostgreSQL
+^^^^^^^
+
+1. ``sudo su postgres`` with complex password
+2. ``createuser -d -P lelebehavior``
+3. ``createdb lelebehavior -O lelebehavior``
+
 Usage with virtualenv
 ^^^^^
 

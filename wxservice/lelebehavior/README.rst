@@ -47,11 +47,16 @@ Target Code (tcode)
 -----------
 
 .. code-block:: shell
+
 0 - lele主页
+
 1 - 乐群
-1 - 乐乐
-2 - 乐友
- - 
+
+2 - 乐乐
+
+3 - 乐友
+
+4 - 
 
 Prepare with PostgreSQL
 ^^^^^^^

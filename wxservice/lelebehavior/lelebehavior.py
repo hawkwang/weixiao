@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, jsonify, abort, make_response, request
-from behavior import behavior
+from behavior import behavior, statistics
 import json
 
 app = Flask(__name__)
@@ -57,6 +57,30 @@ def create_task():
 
     return 'ok', 201
 #end def
+
+@app.route('/behavior/api/v1.0/statistics', methods = ['POST'])
+@auth.login_required
+def create_statistics():
+    if not request.json or not 'uid' in request.json:
+        abort(400)
+
+    # construct behavior item
+    behavior_query = {}
+    behavior_query['uid'] = request.json['uid']
+    behavior_query['gid'] = request.json['gid']
+    behavior_query['t'] = request.json['t']
+    behavior_query['IP'] = request.json['IP']
+    behavior_query['bcode'] = request.json['bcode']
+    behavior_query['tcode'] = request.json['tcode']
+    behavior_query['tid'] = request.json['tid']
+
+    # get brief statistic report
+    briefreport = statistics.getbrief(behavior_query)
+
+    return jsonify( { 's': briefreport['self'], 't': briefreport['total'] } ), 201 
+#end def
+
+
 
 @app.errorhandler(404)
 def not_found(error):

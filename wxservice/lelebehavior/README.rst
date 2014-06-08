@@ -26,7 +26,7 @@ Behavior Code (bcode)
 5 - 取消赞
 6 - 分享
 7 - 创建
-8 - 
+8 - 评论
  - 
  - 
  - 
@@ -52,12 +52,12 @@ Prepare with PostgreSQL
 Usage with virtualenv
 ^^^^^
 
-1. ``cd leleminer``
+1. ``cd lelebehavior``
 2. ``virtualenv env``
 3. Activate the virtual environment
    ``source env/bin/activate``
 4. Install the required libraries
    4.1 ``pip install -r requirements.txt``
-5. Launch leleminer web service
+5. Launch lelebehavior web service
    ``python lelebehavior.py``
 

@@ -25,6 +25,10 @@ Todo list
 ^^^^^
 .. code-block:: python
 
-   promote module - used to support 赞 and hook the activity log to database
+   DONE - promote module - used to support 赞 and hook the activity log to database
    
-   wxbehavior subsystem (service) - used to log any needed behavior from user, and generate analysis report and output by json 
+   WIP - wxbehavior subsystem (service) - used to log any needed behavior from user, and generate analysis report and output by json 
+
+   TBD - update search engine related code to reflect popularity (access, like, share, save and etc.)
+   
+   TBD - design weixiao popularity models for group, lele and user

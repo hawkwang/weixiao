@@ -40,7 +40,8 @@ Behavior Code (bcode)
 9 - 访问信息源
 
 10 - 关注（收藏）
- - 
+
+11 - 取消关注
  - 
 
 Target Code (tcode)

@@ -39,7 +39,7 @@ Behavior Code (bcode)
 
 9 - 访问信息源
 
- - 
+10 - 关注（收藏）
  - 
  - 
 

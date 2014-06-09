@@ -36,6 +36,7 @@ def getTotal(query, mysqlquery):
         myquery = myquery.filter(Behaviors.gid==query['gid'])
     #endif
     # deal with behavior type
+    # for 'like'
     if(query['bcode']==4):
         #get 4 count
         myfirstquery = myquery.filter(Behaviors.bcode==4)
@@ -43,10 +44,22 @@ def getTotal(query, mysqlquery):
         mysecondquery = myquery.filter(Behaviors.bcode==5)
         # get the total count of like 
         total_count = myfirstquery.count() - mysecondquery.count()
-    else:
-        myquery = myquery.filter(Behaviors.bcode==query['bcode'])
-        total_count = myquery.count()
+        return total_count
     #endif
+
+    # for 'care'
+    if(query['bcode']==10):
+        #get 10 count
+        myfirstquery = myquery.filter(Behaviors.bcode==10)
+        #get 11 count
+        mysecondquery = myquery.filter(Behaviors.bcode==11)
+        # get the total count of care
+        total_count = myfirstquery.count() - mysecondquery.count()
+        return total_count
+    #endif
+
+    myquery = myquery.filter(Behaviors.bcode==query['bcode'])
+    total_count = myquery.count()
     return total_count
 #enddef
 
@@ -71,10 +84,21 @@ def getSelf(query, mysqlquery):
         mysecondquery = myquery.filter(Behaviors.bcode==5)
         # get the total count of like 
         self_count = myfirstquery.count() - mysecondquery.count()
-    else:
-        myquery = myquery.filter(Behaviors.bcode==query['bcode'])
-        self_count = myquery.count()
+        return self_count
     #endif
+
+    if(query['bcode']==10):
+        #get 4 count
+        myfirstquery = myquery.filter(Behaviors.bcode==10)
+        #get 5 count
+        mysecondquery = myquery.filter(Behaviors.bcode==11)
+        # get the total count of care 
+        self_count = myfirstquery.count() - mysecondquery.count()
+        return self_count
+    #endif
+
+    myquery = myquery.filter(Behaviors.bcode==query['bcode'])
+    self_count = myquery.count()
     return self_count
 #enddef
 

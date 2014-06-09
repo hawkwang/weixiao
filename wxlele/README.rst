@@ -32,3 +32,8 @@ Todo list
    TBD - update search engine related code to reflect popularity (access, like, share, save and etc.)
    
    TBD - design weixiao popularity models for group, lele and user
+   
+   TBD - create nonceutil, see https://github.com/timostamm/NonceUtil-PHP and http://tyleregeto.com/article/a-guide-to-nonce
+   
+   
+   

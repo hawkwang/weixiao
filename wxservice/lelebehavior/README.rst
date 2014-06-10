@@ -9,6 +9,8 @@ lelebehavior is providing web services through RESTful API:
 
    curl -u hawkwang:1111111 -i -H "Content-Type: application/json" -X POST -d '{"uid":-1,"gid":-1,"t":"1401895865","IP":"127.0.0.1", "bcode":0,"tcode":0, "tid":-1}' http://localhost:5002/behavior/api/v1.0/statistics
 
+   curl -u hawkwang:1111111 -i -H "Content-Type: application/json" -X POST -d '{"tid":-1,"offset":0,"limit":5}' http://localhost:5002/behavior/api/v1.0/allbehaviors
+
 the statistics API is used to get the specified statistic report with json format, for example,
 for "赞", we can get result as {"s":1,"t":200}, 
 which "s" means that the specifies user himself or herself like count for the target, 
@@ -42,7 +44,18 @@ Behavior Code (bcode)
 10 - 关注（收藏）
 
 11 - 取消关注
- - 
+
+12 - 搜索 （包括点击 1.群乐等按钮；2.更多？；3.刷新？   ？表示是否应该统计呢？）
+
+13 - 
+
+-
+
+-
+
+-
+
+
 
 Target Code (tcode)
 -----------

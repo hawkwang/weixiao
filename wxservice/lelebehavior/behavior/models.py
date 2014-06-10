@@ -19,7 +19,7 @@ def db_connect():
 #enddef
 
 
-def create_behaviors_table(engine):
+def create_all_tables(engine):
     """"""
     DeclarativeBase.metadata.create_all(engine)
 #enddef
@@ -38,4 +38,17 @@ class Behaviors(DeclarativeBase):
     tid = Column('tid', Integer, nullable=False)
 #endclass
 
+class SearchQuery(DeclarativeBase):
+    """Sqlalchemy search query model"""
+    __tablename__ = "seachquery"
+
+    qid = Column(Integer, autoincrement=True, primary_key=True)
+    uid = Column('uid', Integer, nullable=False)
+    behaviorcode = Column('behaviorcode', Integer, nullable=False) #behavior code, see https://github.com/hawkwang/weixiao/issues/7
+    areacode = Column('areacode', String, nullable=False) #area code
+    timecode = Column('timecode', Integer, nullable=True) #time period code
+    distancecode = Column('distancecode', Integer, nullable=True) #distance period code
+    keywords = Column('keywords', String, nullable=True)
+    misc = Column('misc', String, nullable=True)
+#endclass
 

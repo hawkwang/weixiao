@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy.orm import sessionmaker, relationship
-from models import db_connect, create_behaviors_table
+from models import db_connect
 from models import Behaviors
 
 def getbrief(query):

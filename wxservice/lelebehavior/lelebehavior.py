@@ -96,7 +96,31 @@ def create_statistics():
     return jsonify( { 's': briefreport['self'], 't': briefreport['total'] } ), 201 
 #end def
 
+# section: search query related
+@app.route('/behavior/api/v1.0/savequery', methods = ['POST'])
+@auth.login_required
+def create_searchquery():
+    if not request.json or not 'uid' in request.json:
+        abort(400)
 
+    # construct search query item
+    new_query = {}
+    new_query['uid'] = request.json['uid']
+    new_query['behaviorcode'] = request.json['behaviorcode']
+    new_query['areacode'] = request.json['areacode']
+    new_query['timecode'] = request.json['timecode']
+    new_query['distancecode'] = request.json['distancecode']
+    new_query['keywords'] = request.json['keywords']
+    new_query['misc'] = request.json['misc']
+
+    # get behavior log, use new thread to put it into database - behavior
+    thread = behavior.searchquery(new_query)
+    thread.start()
+
+    return 'ok', 201
+#end def
+
+# end of section
 
 @app.errorhandler(404)
 def not_found(error):

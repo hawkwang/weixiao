@@ -3,15 +3,15 @@
 
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy import desc
-from models import db_connect, create_behaviors_table
-from models import Behaviors
+from models import db_connect, create_all_tables
+from models import Behaviors, SearchQuery
 import threading
 
 class behavior (threading.Thread):
     def __init__(self, obj):
         threading.Thread.__init__(self)
         self.engine = db_connect()
-        create_behaviors_table(self.engine)
+        create_all_tables(self.engine)
         self.Session = sessionmaker(bind=self.engine)
         self.session = self.Session()
         self.obj = obj
@@ -25,6 +25,31 @@ class behavior (threading.Thread):
             self.session.commit() 
             self.session.close()
             print 'ok to save behavior'
+        except Exception as e:
+            print str(e)
+        #endtry
+    #enddef
+
+#end class
+
+class searchquery (threading.Thread):
+    def __init__(self, obj):
+        threading.Thread.__init__(self)
+        self.engine = db_connect()
+        create_all_tables(self.engine)
+        self.Session = sessionmaker(bind=self.engine)
+        self.session = self.Session()
+        self.obj = obj
+    #end def
+
+    def run(self):
+        # put behavior item into the database
+        try:
+            item = SearchQuery(**self.obj)
+            self.session.add(item)
+            self.session.commit()
+            self.session.close()
+            print 'ok to save search query'
         except Exception as e:
             print str(e)
         #endtry

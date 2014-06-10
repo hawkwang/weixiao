@@ -50,9 +50,11 @@ def getallbehaviors(query):
     session.close()
    
     hasMore = 1
-    number = query['offset']+query['limit']
-    if (number>total):
+    number = int(query['offset']) + int(query['limit'])
+    if (number>=total):
         hasMore = 0
+    
+    print query['offset'], query['limit'], number, total, hasMore    
  
     return { 'numFound':total, 'hasMore':hasMore, 'behaviors':behaviors}
 #enddef

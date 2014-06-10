@@ -58,6 +58,22 @@ def create_task():
     return 'ok', 201
 #end def
 
+@app.route('/behavior/api/v1.0/allbehaviors', methods = ['POST'])
+@auth.login_required
+def get_allbehaviors():
+    if not request.json or not 'tid' in request.json:
+        abort(400)
+
+    # construct behavior item
+    new_query = {}
+    new_query['tid'] = request.json['tid']
+    new_query['offset'] = request.json['offset']
+    new_query['limit'] = request.json['limit']
+
+    result = behavior.getallbehaviors(new_query)
+    return jsonify(result), 201
+#end def
+
 @app.route('/behavior/api/v1.0/statistics', methods = ['POST'])
 @auth.login_required
 def create_statistics():

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy import desc
 from models import db_connect, create_behaviors_table
 from models import Behaviors
 import threading
@@ -32,5 +33,27 @@ class behavior (threading.Thread):
 #end class
 
 
-
+def getallbehaviors(query):
+    engine = db_connect()
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    behaviors = []
+    myquery = session.query(Behaviors).filter(Behaviors.tid==query['tid']).filter(Behaviors.uid!=-1).filter(Behaviors.bcode!=5).filter(Behaviors.bcode!=11)
+    total = myquery.count()
+    for instance in myquery.order_by(desc(Behaviors.t)).offset(query['offset']).limit(query['limit']):
+        behavior = {}
+        behavior['uid'] = instance.uid
+        behavior['t'] = instance.t
+        behavior['bcode'] = instance.bcode
+        behaviors.append(behavior)
+    #endfor
+    session.close()
+   
+    hasMore = 1
+    number = query['offset']+query['limit']
+    if (number>total):
+        hasMore = 0
+ 
+    return { 'numFound':total, 'hasMore':hasMore, 'behaviors':behaviors}
+#enddef
 

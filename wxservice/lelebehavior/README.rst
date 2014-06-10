@@ -11,6 +11,9 @@ lelebehavior is providing web services through RESTful API:
 
    curl -u hawkwang:1111111 -i -H "Content-Type: application/json" -X POST -d '{"tid":-1,"offset":0,"limit":5}' http://localhost:5002/behavior/api/v1.0/allbehaviors
 
+   curl -u hawkwang:1111111 -i -H "Content-Type: application/json" -X POST -d '{"uid":-1,"behaviorcode":0,"areacode":"0","timecode":0,"distancecode":0,"keywords":"", "misc":"" }' http://localhost:5002/behavior/api/v1.0/savequery
+
+
 the statistics API is used to get the specified statistic report with json format, for example,
 for "赞", we can get result as {"s":1,"t":200}, 
 which "s" means that the specifies user himself or herself like count for the target, 
@@ -71,6 +74,37 @@ Target Code (tcode)
 3 - 乐友
 
 4 - 
+
+API - savequery
+^^^^^^^
+
+behaviorcode
+0 - 群乐
+1 - 众乐
+2 - 乐群
+3 - 日历
+4 - header小搜索框
+5 - 乐友
+6 -
+
+areacode 用于区分地区
+
+timecode 用于区分时间段
+0 - 任意时间
+1 - 1天
+2 - 1周
+3 - 1月
+
+distancecode用于区分距离
+0 - 任意 公里
+1 - 2 公里
+2 - 5 公里
+3 - 10 公里
+4 - 25 公里
+5 - 50 公里
+6 - 100 公里
+
+
 
 Prepare with PostgreSQL
 ^^^^^^^

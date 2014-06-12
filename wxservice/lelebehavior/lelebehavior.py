@@ -45,7 +45,8 @@ def create_task():
     new_behavior = {}
     new_behavior['uid'] = request.json['uid']
     new_behavior['gid'] = request.json['gid']
-    new_behavior['t'] = request.json['t']
+    unified_time = str(request.json['t'])
+    new_behavior['t'] = unified_time[:10]
     new_behavior['IP'] = request.json['IP']
     new_behavior['bcode'] = request.json['bcode']
     new_behavior['tcode'] = request.json['tcode']
@@ -84,7 +85,8 @@ def create_statistics():
     behavior_query = {}
     behavior_query['uid'] = request.json['uid']
     behavior_query['gid'] = request.json['gid']
-    behavior_query['t'] = request.json['t']
+    unified_time = str(request.json['t'])
+    behavior_query['t'] = unified_time[:10]
     behavior_query['IP'] = request.json['IP']
     behavior_query['bcode'] = request.json['bcode']
     behavior_query['tcode'] = request.json['tcode']

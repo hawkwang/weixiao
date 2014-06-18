@@ -34,6 +34,10 @@ wxlele: Best event sharing and searching engine
       sudo kill ***
    3. 启动指定的mysql服务
       sudo /usr/local/mysql/support-files/mysql.server restart
+      
+   launch postgresql service
+   ------------------------------------------------
+   根据各个应用创建自己的数据库
    
    launch WeixiaoCrawler
    ------------------------------------------------

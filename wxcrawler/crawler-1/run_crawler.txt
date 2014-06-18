@@ -1,0 +1,20 @@
+#!/bin/sh
+
+cd weixiao
+
+txt=.txt
+json=.json
+defaultname=items
+outputpath=../data/spider/
+
+current_time=$(date "+%s_%N")
+echo "Current Time : $current_time"
+
+txtfile=$defaultname.$current_time$txt
+jsonfile=$outputpath$defaultname.$current_time$json
+
+scrapy crawl weixiao -o $txtfile -t json
+
+mv $txtfile $jsonfile
+
+cd ..

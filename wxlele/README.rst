@@ -1,20 +1,20 @@
 wxlele: Best event sharing and searching engine
 ==========================
 
-移植注意
+.. code-block:: python
 
-给如下目录写权限
-lele/public/img/captcha
-lele/public/img/photo/tmp
-lele/public/img/photo/tmp/thumbnails
-lele/public/img/photo/uploaded-files
-lele/public/img/data/tmp
-lele/public/img/data/tmp/thumbnails
-lele/public/img/data/uploaded-files
-lele/public/img/event-photo/tmp
-lele/public/img/event-photo/tmp/thumbnails
-lele/public/img/event-photo/uploaded-files
-
+   移植注意:
+   给如下目录写权限
+   lele/public/img/captcha
+   lele/public/img/photo/tmp
+   lele/public/img/photo/tmp/thumbnails
+   lele/public/img/photo/uploaded-files
+   lele/public/img/data/tmp
+   lele/public/img/data/tmp/thumbnails
+   lele/public/img/data/uploaded-files
+   lele/public/img/event-photo/tmp
+   lele/public/img/event-photo/tmp/thumbnails
+   lele/public/img/event-photo/uploaded-files
 
 .. code-block:: python
 

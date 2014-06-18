@@ -20,13 +20,20 @@ wxlele: Best event sharing and searching engine
 
    launch apache service
    ------------------------------------------------
+   1. 查看apache服务
+      ps ax | grep httpd | grep -v grep
+   2. 启动
+      /usr/local/zend/apache2/bin/httpd -f /usr/local/zend/apache2/conf/httpd.conf -k start
    
    launch mysql service
    ------------------------------------------------
    由于装了两套mysql，重启机器后需要按照如下步骤去关掉zend的mysql再打开系统自带的
-   ps aux|grep mysql
-   sudo kill ***
-   sudo /usr/local/mysql/support-files/mysql.server restart
+   1. 查看mysql服务
+      ps aux|grep mysql
+   2. 关闭所有的mysql服务
+      sudo kill ***
+   3. 启动指定的mysql服务
+      sudo /usr/local/mysql/support-files/mysql.server restart
    
    launch WeixiaoCrawler
    ------------------------------------------------

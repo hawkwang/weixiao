@@ -37,19 +37,25 @@ wxlele: Best event sharing and searching engine
    
    launch WeixiaoCrawler
    ------------------------------------------------
+   cd Dropbox/weixiao/platform/crawler
+   ./runme
    
    launch WeixiaoTask
    ------------------------------------------------
+   参见相关安装运行。
    
    launch WeixiaoSim
    ------------------------------------------------
+   cd /Users/hawkwang/Dropbox/weixiao/platform/WeixiaoSim/weixiao
+   python main.py
    
    launch WeixiaoService/leleminer
    ------------------------------------------------
    
    launch WeixiaoService/lelebehavior
    ------------------------------------------------
-   
+   cd /Users/hawkwang/Documents/weixiao/wxservice/lelebehavior
+   python lelebehavior.py
    
    launch WexiaoSearchEngine
    ------------------------------------------------

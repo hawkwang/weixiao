@@ -51,6 +51,8 @@ wxlele: Best event sharing and searching engine
    
    launch WeixiaoService/leleminer
    ------------------------------------------------
+   cd /Users/hawkwang/Documents/weixiao/wxservice/leleminer
+   python leleminer.py
    
    launch WeixiaoService/lelebehavior
    ------------------------------------------------

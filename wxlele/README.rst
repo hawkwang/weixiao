@@ -1,24 +1,57 @@
 wxlele: Best event sharing and searching engine
 ==========================
 
+移植注意
+
+给如下目录写权限
+lele/public/img/captcha
+lele/public/img/photo/tmp
+lele/public/img/photo/tmp/thumbnails
+lele/public/img/photo/uploaded-files
+lele/public/img/data/tmp
+lele/public/img/data/tmp/thumbnails
+lele/public/img/data/uploaded-files
+lele/public/img/event-photo/tmp
+lele/public/img/event-photo/tmp/thumbnails
+lele/public/img/event-photo/uploaded-files
+
 
 .. code-block:: python
 
    launch apache service
+   ------------------------------------------------
    
    launch mysql service
+   ------------------------------------------------
+   由于装了两套mysql，重启机器后需要按照如下步骤去关掉zend的mysql再打开系统自带的
+   ps aux|grep mysql
+   sudo kill ***
+   sudo /usr/local/mysql/support-files/mysql.server restart
    
    launch WeixiaoCrawler
+   ------------------------------------------------
    
    launch WeixiaoTask
+   ------------------------------------------------
    
    launch WeixiaoSim
+   ------------------------------------------------
    
    launch WeixiaoService/leleminer
+   ------------------------------------------------
    
    launch WeixiaoService/lelebehavior
+   ------------------------------------------------
+   
+   
+   launch WexiaoSearchEngine
+   ------------------------------------------------
+   cd /home/hawkwang/Documents/solr-4.6.1/lele
+   java -jar start.jar
+   http://localhost:8983/solr/#/events/query
    
    launch WeixiaoLele
+   ------------------------------------------------
 
 
 Todo list

@@ -75,6 +75,22 @@ def get_allbehaviors():
     return jsonify(result), 201
 #end def
 
+@app.route('/behavior/api/v1.0/allbehaviorsbygid', methods = ['POST'])
+@auth.login_required
+def get_allbehaviors_by_gid():
+    if not request.json or not 'gid' in request.json:
+        abort(400)
+
+    # construct behavior item
+    new_query = {}
+    new_query['gid'] = request.json['gid']
+    new_query['offset'] = request.json['offset']
+    new_query['limit'] = request.json['limit']
+
+    result = behavior.getallbehaviorsbygid(new_query)
+    return jsonify(result), 201
+#end def
+
 @app.route('/behavior/api/v1.0/statistics', methods = ['POST'])
 @auth.login_required
 def create_statistics():

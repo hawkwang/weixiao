@@ -84,3 +84,30 @@ def getallbehaviors(query):
     return { 'numFound':total, 'hasMore':hasMore, 'behaviors':behaviors}
 #enddef
 
+def getallbehaviorsbygid(query):
+    engine = db_connect()
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    behaviors = []
+    myquery = session.query(Behaviors).filter(Behaviors.tid==query['gid']).filter(Behaviors.uid>0).filter(Behaviors.bcode!=0).filter(Behaviors.bcode!=1).filter(Behaviors.bcode!=2).filter(Behaviors.bcode!=3).filter(Behaviors.bcode!=5).filter(Behaviors.bcode!=11).filter(Behaviors.bcode!=12).filter(Behaviors.tcode!=0).filter(Behaviors.tcode!=3).filter(Behaviors.tcode!=4)
+    total = myquery.count()
+    for instance in myquery.order_by(desc(Behaviors.t)).offset(query['offset']).limit(query['limit']):
+        behavior = {}
+        behavior['uid'] = instance.uid
+        behavior['t'] = instance.t
+        behavior['bcode'] = instance.bcode
+        behavior['tcode'] = instance.tcode
+        behavior['tid'] = instance.tid
+        behaviors.append(behavior)
+    #endfor
+    session.close()
+   
+    hasMore = 1
+    number = int(query['offset']) + int(query['limit'])
+    if (number>=total):
+        hasMore = 0
+    
+    print 'get behaviors by gid - ', query['offset'], query['limit'], number, total, hasMore    
+ 
+    return { 'numFound':total, 'hasMore':hasMore, 'behaviors':behaviors}
+#enddef

@@ -67,22 +67,22 @@ def getDetailedInfo(address, city=u'北京市'):
     if loc_details['status']==1:
         place = u'北京市' + address
         print 'try again with ' + place.encode('utf-8')
-        loc_details = getDetailedInfo(place)
+        loc_details = map.baidumap.getDetailedInfo(place)
     #endif
     if loc_details['status']==1:
         place = u'北京' + address
         print 'try again with ' + place.encode('utf-8')
-        loc_details = getDetailedInfo(place)
+        loc_details = map.baidumap.getDetailedInfo(place)
     #endif
     if loc_details['status']==1:
-        place = u'北京市 ' + instance.place
+        place = u'北京市 ' + address
         print 'try again with ' + place.encode('utf-8')
-        loc_details = getDetailedInfo(place)
+        loc_details = map.baidumap.getDetailedInfo(place)
     #endif
     if loc_details['status']==1:
-        place = u'北京 ' + instance.place
+        place = u'北京 ' + address
         print 'try again with ' + place.encode('utf-8')
-        loc_details = getDetailedInfo(place)
+        loc_details = map.baidumap.getDetailedInfo(place)
     #endif
     # if no detailed information can be found throught baidu or google service,
     # just put this address info to address table with out None value for 
@@ -96,7 +96,9 @@ def getDetailedInfo(address, city=u'北京市'):
         new_address['address'] = address
         address_item = Address(**new_address)
         session.add(address_item)
-        session.commit()    
+        session.commit()
+        session.close()
+        return detailinfo;
     #endif
         
     # put this info

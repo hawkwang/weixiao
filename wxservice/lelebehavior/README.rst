@@ -11,6 +11,8 @@ lelebehavior is providing web services through RESTful API:
 
    curl -u hawkwang:1111111 -i -H "Content-Type: application/json" -X POST -d '{"tid":-1,"offset":0,"limit":5}' http://localhost:5002/behavior/api/v1.0/allbehaviors
 
+   curl -u hawkwang:1111111 -i -H "Content-Type: application/json" -X POST -d '{"gid":37,"offset":0,"limit":5}' http://localhost:5002/behavior/api/v1.0/allbehaviorsbygid
+
    curl -u hawkwang:1111111 -i -H "Content-Type: application/json" -X POST -d '{"uid":-1,"behaviorcode":0,"areacode":"0","timecode":0,"distancecode":0,"keywords":"", "misc":"" }' http://localhost:5002/behavior/api/v1.0/savequery
 
 

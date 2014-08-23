@@ -86,7 +86,8 @@ def mysleep(count):
 #enddef
 
 class WeixiaoSim(object):
-    def __init__(self):
+    def __init__(self, url): #url is the lele service API url
+        self.url = url
         engine = db_connect()
         create_events_table(engine)
         self.Session = sessionmaker(bind=engine)
@@ -251,7 +252,7 @@ class WeixiaoSim(object):
         eventinfo['fixnum'] = '100'
         print eventinfo
 
-        url = 'http://lele.local/api/'
+        url = self.url  #'http://wxlele.local/api/'
         eventinfo_json = json.dumps(eventinfo)
         info = urllib.urlencode({"AK":"robot.weixiao@1234567", "event":eventinfo_json})
         print info
@@ -298,8 +299,17 @@ if __name__ == '__main__':
     reload(sys)
     sys.setdefaultencoding('utf-8') 
     print '[WeixiaoSim] - ' + 'WeixiaoSim starting ...'
-    
-    wxSim = WeixiaoSim()
+   
+    total = len(sys.argv)
+    if(total != 2):
+        print 'we need lele service url ... '
+        sys.exit()
+    #endif
+
+    cmdargs = str(sys.argv)
+    print ("Args list: %s " % sys.argv[1])
+
+    wxSim = WeixiaoSim(sys.argv[1])
     wxSim.process()
 
 #end if

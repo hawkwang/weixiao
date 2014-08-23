@@ -9,3 +9,8 @@ a data curation illustration system, which is used to demonstrate:
 5. how to coordinate and integrate different systemes into one big platform
 6. how to lead poeple to participate
 7. etc.
+
+
+- Bug Tracking:
+
+https://bugs.launchpad.net/weixiao

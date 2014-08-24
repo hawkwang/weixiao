@@ -40,3 +40,8 @@ Usage with virtualenv
 5. Install the wxanalyzer package
    ``pip install --no-index /wxanalyzer/dist/wxanalyzer-0.1.0.tar.gz``
 6. Great, we can use the API call, see previous section.
+
+Usage with Chinese
+^^^^^
+
+See: http://blog.csdn.net/gufengshanyin/article/details/21533409

@@ -51,7 +51,7 @@ wxlele: Best event sharing and searching engine
    launch WeixiaoSim
    ------------------------------------------------
    cd /Users/hawkwang/Documents/weixiao/wxopentask/WeixiaoSim/weixiao
-   python main.py
+   python main.py http://wxlele.local/api/
    
    launch WeixiaoService/leleminer
    ------------------------------------------------

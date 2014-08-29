@@ -72,6 +72,19 @@ wxlele: Best event sharing and searching engine
    launch WeixiaoLele
    ------------------------------------------------
 
+How to add new source with crawler (FIXME)
+^^^^^
+.. code-block:: python
+
+   1 - create group
+   
+   2 - get group id with mysql
+   
+   3 - create crawler emits event item with source of the group id
+   
+   4 - run WeixiaoSim to put newly identified event to lele repository
+   
+
 
 Todo list
 ^^^^^

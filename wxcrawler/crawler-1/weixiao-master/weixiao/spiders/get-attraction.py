@@ -165,7 +165,7 @@ class AttractionSpider(CrawlSpider):
 				#end for
 				#fee = detail.xpath('li[@class="f_lb_list_piaojia"]/span[1]/text()').extract()[0]
 				item = WeixiaoItem()
-				item['source'] = 1
+				item['source'] = 34   # this is hardcoded groupid
 				item['city'] = to_unicode_or_bust(city)
 				item['category'] = to_unicode_or_bust(detailedCategory)
 				item['title'] = to_unicode_or_bust(title)

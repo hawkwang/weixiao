@@ -116,6 +116,7 @@ class WeixiaoSim(object):
                 #flag = True
                 sleepcount = 0
                 print 'Processing event - ' + instance.title.encode('utf-8') + ' ' + instance.place.encode('utf-8')
+                source = instance.source
                 title = instance.title
                 desc = instance.desc
                 date = instance.date
@@ -172,6 +173,7 @@ class WeixiaoSim(object):
             
                 #wrap info into potentialItem
                 potentialItem = {}
+                potentialItem['source'] = to_unicode_or_bust(source)
                 potentialItem['title'] = to_unicode_or_bust(title)
                 potentialItem['desc'] = to_unicode_or_bust(desc)
                 potentialItem['date'] = to_unicode_or_bust(date)
@@ -254,7 +256,7 @@ class WeixiaoSim(object):
 
         url = self.url  #'http://wxlele.local/api/'
         eventinfo_json = json.dumps(eventinfo)
-        info = urllib.urlencode({"AK":"robot.weixiao@1234567", "event":eventinfo_json})
+        info = urllib.urlencode({"AK":"robot.weixiao@1234567", "source":potentialItem['source'], "event":eventinfo_json})
         print info
         response = urllib2.urlopen(url, info).read()
         json_data = json.loads(response)

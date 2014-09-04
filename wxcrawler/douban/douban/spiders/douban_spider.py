@@ -5,7 +5,6 @@ from scrapy.http import Request
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.contrib.linkextractors import LinkExtractor
-#from scrapy.contrib.linkextractors.lxmlhtml import LxmlParserLinkExtractor
 from scrapy.selector import HtmlXPathSelector
 from douban.items import DoubanItem
 import sys

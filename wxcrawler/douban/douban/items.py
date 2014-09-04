@@ -7,11 +7,20 @@ from scrapy.item import Item, Field
 
 class DoubanItem(Item):
     # define the fields for your item here like:
-    title = Field()
-    city = Field()
-    location = Field()
-    area = Field()
-    imageurl = Field()
-    datetime = Field()
-    description = Field()
+    md5                 = Field()
+    source              = Field()
+    city		= Field()
+    category	        = Field()
+    detailedCategory	= Field()
+    title		= Field()
+    link		= Field()
+    date		= Field()
+    time		= Field()
+    place		= Field()
+    fee			= Field()
+    feelist             = Field()
+    image               = Field()
+    desc		= Field()
+    status              = Field()
+    created             = Field()
     #pass

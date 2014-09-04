@@ -20,3 +20,16 @@ LOG_LEVEL = 'INFO'
 #CONCURRENT_REQUESTS = 100
 #AJAXCRAWL_ENABLED = True
 
+ITEM_PIPELINES = {
+    'weixiao.pipelines.DuplicatesPipeline': 300,
+    'weixiao.pipelines.LivingSocialPipeline': 800,
+}
+
+DATABASE = {'drivername': 'postgres',
+            'host': 'localhost',
+            'port': '5432',
+            'username': 'lelespider',
+            'password': '1111111',
+            'database': 'lelespider'}
+
+

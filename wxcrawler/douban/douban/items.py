@@ -5,7 +5,7 @@
 
 from scrapy.item import Item, Field
 
-class DoubanItem(Item):
+class WeixiaoItem(Item):
     # define the fields for your item here like:
     md5                 = Field()
     source              = Field()

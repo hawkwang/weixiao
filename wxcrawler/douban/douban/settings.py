@@ -21,8 +21,8 @@ LOG_LEVEL = 'INFO'
 #AJAXCRAWL_ENABLED = True
 
 ITEM_PIPELINES = {
-    'weixiao.pipelines.DuplicatesPipeline': 300,
-    'weixiao.pipelines.LivingSocialPipeline': 800,
+    'douban.pipelines.DuplicatesPipeline': 300,
+#    'douban.pipelines.LivingSocialPipeline': 800,
 }
 
 DATABASE = {'drivername': 'postgres',

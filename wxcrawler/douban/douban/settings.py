@@ -22,7 +22,7 @@ LOG_LEVEL = 'INFO'
 
 ITEM_PIPELINES = {
     'douban.pipelines.DuplicatesPipeline': 300,
-#    'douban.pipelines.LivingSocialPipeline': 800,
+    'douban.pipelines.LivingSocialPipeline': 800,
 }
 
 DATABASE = {'drivername': 'postgres',

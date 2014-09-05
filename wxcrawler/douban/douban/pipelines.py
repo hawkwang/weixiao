@@ -1,9 +1,4 @@
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: http://doc.scrapy.org/topics/item-pipeline.html
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 # -*- coding: UTF-8 -*-
 
 from scrapy.exceptions import DropItem
@@ -13,6 +8,7 @@ import hashlib
 import time
 import pytz
 from datetime import tzinfo, timedelta, datetime
+import re
 
 def to_unicode_or_bust(obj, encoding='utf-8'):
     if isinstance(obj, basestring):
@@ -56,6 +52,17 @@ def get_time_detail(t):
 def build_datetime(year, month, day, hour, minute, tz=pytz.timezone('Asia/Shanghai')):
     ctt = datetime(year, month, day, hour, minute, 0, 0, tz)
     return ctt
+#end def
+
+def convert_city(city):
+    city = re.sub(u'北京','beijing',city)
+    city = re.sub(u'上海','shanghai',city)
+    city = re.sub(u'广州','guangzhou',city)
+    city = re.sub(u'深圳','shenzhen',city)
+    city = re.sub(u'西安','xian',city)
+    city = re.sub(u'成都','chengdu',city)
+
+    return city
 #end def
 
 class DuplicatesPipeline(object):
@@ -115,6 +122,7 @@ class DuplicatesPipeline(object):
             raise DropItem("Duplicate item found: %s" % item)
         else:
             self.ids_seen.add(item['md5'])
+            item['city'] = convert_city(item['city'])
             return item
     #end def
 #end class

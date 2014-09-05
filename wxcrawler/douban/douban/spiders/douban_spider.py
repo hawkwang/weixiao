@@ -7,7 +7,7 @@ from scrapy import log
 from scrapy.http import Request
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-from scrapy.contrib.linkextractors import LinkExtractor
+#from scrapy.contrib.linkextractors import LinkExtractor
 from scrapy.selector import HtmlXPathSelector
 from douban.items import WeixiaoItem
 import sys
@@ -133,11 +133,22 @@ class DoubanSpider(CrawlSpider):
     allowed_domains = ["mosh.cn"]
     #allowed_domains = ["www.douban.com"]
     #start_urls = ['http://shanghai.douban.com/events/week-all','http://beijing.douban.com/events/week-all'] # urls from which the spider will start crawling
-    start_urls = ['http://www.mosh.cn/beijing/events/latest/', 'http://www.mosh.cn/beijing/events/week/', 'http://www.mosh.cn'] # urls from which the spider will start crawling
+    start_urls = [
+        'http://www.mosh.cn/beijing/events/latest/', 
+        'http://www.mosh.cn/beijing/park/latest/', 
+        'http://www.mosh.cn/beijing/movie/latest/', 
+        'http://www.mosh.cn/beijing/music/latest/', 
+        'http://www.mosh.cn/beijing/drama/latest/', 
+        'http://www.mosh.cn/beijing/exbt/latest/', 
+        'http://www.mosh.cn/beijing/sports/latest/', 
+        'http://www.mosh.cn/beijing/other/latest/', 
+        'http://www.mosh.cn/beijing/events/week/', 
+        'http://www.mosh.cn'] 
+    # urls from which the spider will start crawling
     rules = ()
     targetpattern = r'http://www.mosh.cn/events/\d+'
     
-    redis = redis.StrictRedis(host='localhost', port=6379, db=0)
+    #redis = redis.StrictRedis(host='localhost', port=6379, db=0)
 
 
     def __init__(self, name=None, **kwargs):
@@ -150,14 +161,14 @@ class DoubanSpider(CrawlSpider):
         settings.overrides['DOWNLOAD_TIMEOUT'] = 3600
     #end def
 
-    def isNewUrl(self, url):
-        if self.redis.get(url)==None :
-            self.redis.set(url,1)
-            return True
-        else:
-            return False
-        #end if
-    #end def
+#    def isNewUrl(self, url):
+#        if self.redis.get(url)==None :
+#            self.redis.set(url,1)
+#            return True
+#        else:
+#            return False
+#        #end if
+#    #end def
 
     def parse(self, response):
         hxs = HtmlXPathSelector(response)
@@ -168,7 +179,7 @@ class DoubanSpider(CrawlSpider):
             if (not v_url) or (UrlChecker(v_url)==False):
                 continue
             else:
-                if isTargetPage(self.targetpattern,v_url) and self.isNewUrl(v_url)==True :
+                if isTargetPage(self.targetpattern,v_url): #and self.isNewUrl(v_url)==True :
                     yield Request( url=v_url, callback=self.parse_details)
                     continue    
                 #end if
@@ -210,8 +221,8 @@ class DoubanSpider(CrawlSpider):
         #get raw link
         link = response.request.url
 
-        #get raw fee
-        fee = '' 
+        #get raw fee, FIXME
+        fee = '0' 
 
         #get raw feelist
         feelist = ''
@@ -230,17 +241,17 @@ class DoubanSpider(CrawlSpider):
         md5 = ''
 
         #set source
-        source = 34
+        source = 41
         
         #
-        print '[weixiao] title - %s' % title
-        print '[weixiao] datetime - %s' % datetime
-        print '[weixiao] date - %s' % getDate(datetime)
-        print '[weixiao] time - %s' % getTime(datetime)
-        print '[weixiao] place - %s' % place
-        print '[weixiao] city - %s' % city
-        print '[weixiao] imageurl - %s' % imageurl
-        print '[weixiao] description - %s' % desc
+        #print '[weixiao] title - %s' % title
+        #print '[weixiao] datetime - %s' % datetime
+        #print '[weixiao] date - %s' % getDate(datetime)
+        #print '[weixiao] time - %s' % getTime(datetime)
+        #print '[weixiao] place - %s' % place
+        #print '[weixiao] city - %s' % city
+        #print '[weixiao] imageurl - %s' % imageurl
+        #print '[weixiao] description - %s' % desc
 
         #generate the item
         item = WeixiaoItem()

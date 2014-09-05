@@ -131,6 +131,7 @@ class WeixiaoSim(object):
 
                 if is_num(fee) == False :
                     instance.status = '2'
+                    print 'Note: fee (' + fee + ') is strange. So we will skip it...'
                     session.commit()
                     continue
                 #endif
@@ -139,6 +140,7 @@ class WeixiaoSim(object):
                 year, month, day = get_date_detail(date)
                 if validate_time(time) == False :
                     instance.status = '2'
+                    print 'Note: time (' + time + ') is strange. So we will skip it...'
                     session.commit()
                     continue
                 else :
@@ -157,7 +159,7 @@ class WeixiaoSim(object):
                 if loc_details['status']==1:
                     #raw_input("Press Enter to continue...")
                     # FIXME - put this strange address into TBD_address table
-                    print 'Note: ' + title + ' with place ' + place + ' is strange. So we will skip it...'
+                    print 'Note: ' + title + ' with place (' + place + ') is strange. So we will skip it...'
                     instance.status = '2'
                     session.commit()
                     continue

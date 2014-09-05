@@ -113,13 +113,15 @@ class DuplicatesPipeline(object):
         event_time = build_datetime(year, month, day, hour, minute)
         current_china_datetime = datetime.now(pytz.timezone('Asia/Shanghai'))
         if (event_time.isoformat(' ') <= current_china_datetime.isoformat(' ')) :
-            raise DropItem("Obsolete item found: %s" % item)
+            raise DropItem("Obsolete item found ...")
+            #raise DropItem("Obsolete item found: %s" % item)
 
         #item['created'] = time.asctime( time.localtime(time.time()) )
         item['created'] = datetime.utcnow().isoformat(' ')  # replace .now()
         
         if item['md5'] in self.ids_seen:
-            raise DropItem("Duplicate item found: %s" % item)
+            raise DropItem("Duplicate item found ...")
+            #raise DropItem("Duplicate item found: %s" % item)
         else:
             self.ids_seen.add(item['md5'])
             item['city'] = convert_city(item['city'])

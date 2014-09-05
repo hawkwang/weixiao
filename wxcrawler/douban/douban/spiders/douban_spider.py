@@ -12,7 +12,8 @@ from scrapy.selector import HtmlXPathSelector
 from douban.items import WeixiaoItem
 import sys
 import re
-import redis
+import random
+#import redis
 
 def UrlChecker(url):
     regex = re.compile(
@@ -134,7 +135,6 @@ class DoubanSpider(CrawlSpider):
     #allowed_domains = ["www.douban.com"]
     #start_urls = ['http://shanghai.douban.com/events/week-all','http://beijing.douban.com/events/week-all'] # urls from which the spider will start crawling
     start_urls = [
-        'http://www.mosh.cn/beijing/events/latest/', 
         'http://www.mosh.cn/beijing/park/latest/', 
         'http://www.mosh.cn/beijing/movie/latest/', 
         'http://www.mosh.cn/beijing/music/latest/', 
@@ -143,7 +143,9 @@ class DoubanSpider(CrawlSpider):
         'http://www.mosh.cn/beijing/sports/latest/', 
         'http://www.mosh.cn/beijing/other/latest/', 
         'http://www.mosh.cn/beijing/events/week/', 
-        'http://www.mosh.cn'] 
+        'http://www.mosh.cn/beijing/events/latest/', 
+        'http://www.mosh.cn']
+    random.shuffle( start_urls ) 
     # urls from which the spider will start crawling
     rules = ()
     targetpattern = r'http://www.mosh.cn/events/\d+'
@@ -201,6 +203,7 @@ class DoubanSpider(CrawlSpider):
         try:
             datetime = hxs.xpath('//div[1]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/p/text()').extract()[0]
         except:
+            print 'try another format...'
             datetime = hxs.xpath('//div[1]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div/div[1]/div[2]/text()').extract()[0]
 
         eventdate = getDate(datetime)        

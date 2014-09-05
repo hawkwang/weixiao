@@ -1,14 +1,26 @@
-# -*- coding: utf-8 -*-
-
 # Define here the models for your scraped items
 #
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy.item import Item, Field
 
-
-class LibcapitalItem(scrapy.Item):
+class WeixiaoItem(Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    md5                 = Field()
+    source              = Field()
+    city		= Field()
+    category	        = Field()
+    detailedCategory	= Field()
+    title		= Field()
+    link		= Field()
+    date		= Field()
+    time		= Field()
+    place		= Field()
+    fee			= Field()
+    feelist             = Field()
+    image               = Field()
+    desc		= Field()
+    status              = Field()
+    created             = Field()
+    #pass

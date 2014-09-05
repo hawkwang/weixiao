@@ -13,7 +13,22 @@ BOT_NAME = 'libcapital'
 SPIDER_MODULES = ['libcapital.spiders']
 NEWSPIDER_MODULE = 'libcapital.spiders'
 
+LOG_LEVEL = 'INFO'
 RETRY_ENABLED = False
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'libcapital (+http://www.yourdomain.com)'
+
+ITEM_PIPELINES = {
+    'libcapital.pipelines.DuplicatesPipeline': 300,
+#    'libcapital.pipelines.LivingSocialPipeline': 800,
+}
+
+DATABASE = {'drivername': 'postgres',
+            'host': 'localhost',
+            'port': '5432',
+            'username': 'lelespider',
+            'password': '1111111',
+            'database': 'lelespider'}
+
+

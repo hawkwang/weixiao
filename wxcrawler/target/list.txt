@@ -1,10 +1,15 @@
+
+
 tickets:
 
 
 
 library:
 
+
+
 http://www.bplisn.net.cn/activityList.aspx
+
 
 
 reading:
@@ -18,7 +23,9 @@ sports:
 IT:
 
 
-
+exibition:
+国家会议中心
+http://www.cnccchina.com/Events/Default.aspx
 
 
 竞争对手：

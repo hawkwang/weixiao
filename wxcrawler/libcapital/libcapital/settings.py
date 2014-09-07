@@ -21,7 +21,7 @@ RETRY_ENABLED = False
 
 ITEM_PIPELINES = {
     'libcapital.pipelines.DuplicatesPipeline': 300,
-#    'libcapital.pipelines.LivingSocialPipeline': 800,
+    'libcapital.pipelines.LivingSocialPipeline': 800,
 }
 
 DATABASE = {'drivername': 'postgres',

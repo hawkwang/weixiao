@@ -125,6 +125,7 @@ class WeixiaoSim(object):
                 fee = instance.fee
                 feelist = instance.feelist
                 imageurl = instance.image
+                originurl = instance.link
                 print place.encode('utf-8')
                 print date
                 print time
@@ -184,6 +185,7 @@ class WeixiaoSim(object):
                 potentialItem['fee'] = to_unicode_or_bust(fee)
                 potentialItem['feelist'] = to_unicode_or_bust(feelist)
                 potentialItem['imageurl'] = to_unicode_or_bust(imageurl)
+                potentialItem['originurl'] = to_unicode_or_bust(originurl)
                 potentialItem['formatted_address'] = to_unicode_or_bust(loc_details['formatted_address'])
                 potentialItem['province'] = to_unicode_or_bust(loc_details['province'])
                 potentialItem['city'] = to_unicode_or_bust(loc_details['city'])
@@ -242,6 +244,7 @@ class WeixiaoSim(object):
         #leleService.addItem(json_item)
         eventinfo = {}
         eventinfo['imageurl'] = potentialItem['imageurl'] 
+        eventinfo['originurl'] = potentialItem['originurl'] 
         eventinfo['address'] = potentialItem['place']
         eventinfo['longitude'] = potentialItem['longitude']
         eventinfo['latitude'] = potentialItem['latitude']

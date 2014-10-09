@@ -120,6 +120,7 @@ class WeixiaoSim(object):
                 title = instance.title
                 desc = instance.desc
                 date = instance.date
+                category = instance.category
                 time = instance.time
                 place = instance.place
                 fee = instance.fee
@@ -179,6 +180,7 @@ class WeixiaoSim(object):
                 potentialItem['source'] = to_unicode_or_bust(source)
                 potentialItem['title'] = to_unicode_or_bust(title)
                 potentialItem['desc'] = to_unicode_or_bust(desc)
+                potentialItem['category'] = to_unicode_or_bust(category)
                 potentialItem['date'] = to_unicode_or_bust(date)
                 potentialItem['time'] = to_unicode_or_bust(time)
                 potentialItem['place'] = to_unicode_or_bust(place)
@@ -254,6 +256,7 @@ class WeixiaoSim(object):
         eventinfo['time'] = potentialItem['time']
         eventinfo['title'] = potentialItem['title']
         eventinfo['description'] = potentialItem['desc']
+        eventinfo['category'] = potentialItem['category']
         eventinfo['fee_description'] = potentialItem['feelist']
         eventinfo['price'] = potentialItem['fee']
         eventinfo['fixnum'] = '100'

@@ -1,9 +1,4 @@
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: http://doc.scrapy.org/topics/item-pipeline.html
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 # -*- coding: UTF-8 -*-
 
 from scrapy.exceptions import DropItem
@@ -13,6 +8,32 @@ import hashlib
 import time
 import pytz
 from datetime import tzinfo, timedelta, datetime
+import re
+
+def convert_category(category):
+    category = re.sub('wangqiu', u'网球', category)
+    category = re.sub('zaji', u'杂技', category)
+    category = re.sub('huiyi', u'会议', category)
+    category = re.sub('saiche', u'赛车', category)
+    category = re.sub('yinlehui', u'音乐会', category)
+    category = re.sub('huabing', u'滑冰', category)
+    category = re.sub('xiangshengxiaopin', u'相声小品', category)
+    category = re.sub('yanchanghui', u'演唱会', category)
+    category = re.sub('wuju', u'舞剧', category)
+    category = re.sub('xiqu', u'戏曲', category)
+    category = re.sub('anopera', u'歌剧', category)
+    category = re.sub('qinzijiating', u'亲子家庭', category)
+    category = re.sub('mashu', u'马术', category)
+    category = re.sub('yinleju', u'音乐剧', category)
+    category = re.sub('gaoerfuqiu', u'高尔夫球', category)
+    category = re.sub('huaju', u'话剧', category)
+    category = re.sub('zhanlan', u'展览', category)
+    category = re.sub('zuqiu', u'足球', category)
+    category = re.sub('theatre', u'电影', category)
+    category = re.sub('zongyijiemu', u'综艺节目', category)
+
+    return category
+#end def
 
 def to_unicode_or_bust(obj, encoding='utf-8'):
     if isinstance(obj, basestring):
@@ -115,6 +136,7 @@ class DuplicatesPipeline(object):
             raise DropItem("Duplicate item found: %s" % item)
         else:
             self.ids_seen.add(item['md5'])
+            item['category'] = convert_category(item['category'])
             return item
     #end def
 #end class

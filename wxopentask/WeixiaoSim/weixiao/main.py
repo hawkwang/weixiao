@@ -223,7 +223,10 @@ class WeixiaoSim(object):
                     #end if
                 else:
                     print 'no duplicate removal feature ...'
-                    self.addToLeleRepository(potentialItem)
+                    try:
+                        self.addToLeleRepository(potentialItem)
+                    except:
+                        print 'exception happening'
                 #endif
 
                 # label this item as analyzed in the table of db - lelespider

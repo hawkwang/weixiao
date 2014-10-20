@@ -70,6 +70,7 @@ class Address(DeclarativeBase):
     address = Column('address', String, nullable=False)
     faddress = Column('faddress', String, nullable=False)
     fid = Column(Integer, ForeignKey('faddress.fid'))
+    created = Column('created', String, nullable=True)
     faddress = relationship(Faddress, primaryjoin=fid == Faddress.fid)
 #end class
 

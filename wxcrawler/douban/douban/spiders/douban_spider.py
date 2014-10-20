@@ -219,7 +219,9 @@ class DoubanSpider(CrawlSpider):
         city = getCity(place)
        
         #get raw category
-        category = ''
+        category = hxs.xpath('//div[1]/div/div[2]/div[1]/div[1]/div[2]/p/a[2]/text()').extract()[0]
+        #category = ''
+        print 'category - ' + category
 
         #get raw link
         link = response.request.url

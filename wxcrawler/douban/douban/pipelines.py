@@ -65,6 +65,17 @@ def convert_city(city):
     return city
 #end def
 
+def convert_category(category):
+    category = re.sub(u'音乐现场',u'文艺演出',category)
+    category = re.sub(u'电影放映',u'电影',category)
+    category = re.sub(u'戏曲舞台',u'戏曲曲艺',category)
+    category = re.sub(u'运动赛事',u'体育赛事',category)
+    category = re.sub(u'展览讲座',u'博物博览',category)
+    category = re.sub(u'公益其他',u'其他',category)
+
+    return category
+#end def
+
 class DuplicatesPipeline(object):
 
     def __init__(self):
@@ -125,6 +136,8 @@ class DuplicatesPipeline(object):
         else:
             self.ids_seen.add(item['md5'])
             item['city'] = convert_city(item['city'])
+            item['place'] = re.sub(ur'（.*）', '',item['place'])
+            item['category'] = convert_category(item['category'])
             return item
     #end def
 #end class

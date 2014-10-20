@@ -15,7 +15,9 @@ import map.baidumap
 
 
 def getDetailedInfo(address, city=u'北京市'):
-    
+
+    address = address.replace(' ','')
+        
     detailinfo = {}
     detailinfo['status'] = 1
     detailinfo['formatted_address'] = ''
@@ -94,6 +96,7 @@ def getDetailedInfo(address, city=u'北京市'):
         new_address['aid'] = aid
         new_address['city'] = acity
         new_address['address'] = address
+        new_address['created'] = datetime.utcnow().isoformat(' ')
         address_item = Address(**new_address)
         session.add(address_item)
         session.commit()
@@ -122,6 +125,7 @@ def getDetailedInfo(address, city=u'北京市'):
     new_address['aid'] = aid
     new_address['city'] = acity
     new_address['address'] = address
+    new_address['created'] = datetime.utcnow().isoformat(' ')
     new_address['fid'] = fid
     address_item = Address(**new_address)
     session.add(address_item)

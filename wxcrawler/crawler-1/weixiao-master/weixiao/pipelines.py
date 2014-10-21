@@ -11,7 +11,17 @@ from datetime import tzinfo, timedelta, datetime
 import re
 
 def convert_category(category):
-    category = re.sub('wangqiu', u'网球', category)
+    category = re.sub('wangqiu', u'其他赛事', category)
+    category = re.sub('gaoerfuqiu', u'其他赛事', category)
+    category = re.sub('quanji', u'其他赛事', category)
+    category = re.sub('mashu', u'其他赛事', category)
+    category = re.sub('tiaoshui', u'其他赛事', category)
+    category = re.sub('tianjing', u'其他赛事', category)
+    category = re.sub('huabing', u'其他赛事', category)
+    category = re.sub('saiche', u'其他赛事', category)
+    category = re.sub('youyong', u'其他赛事', category)
+    category = re.sub('taiqiu', u'其他赛事', category)
+    category = re.sub('baseball', u'其他赛事', category)
     category = re.sub('zaji', u'杂技', category)
     category = re.sub('huiyi', u'会议', category)
     category = re.sub('saiche', u'赛车', category)
@@ -29,6 +39,8 @@ def convert_category(category):
     category = re.sub('huaju', u'话剧', category)
     category = re.sub('zhanlan', u'展览', category)
     category = re.sub('zuqiu', u'足球', category)
+    category = re.sub('nba', u'篮球', category)
+    category = re.sub('Cbalanqiu', u'篮球', category)
     category = re.sub('theatre', u'电影', category)
     category = re.sub('zongyijiemu', u'综艺节目', category)
 

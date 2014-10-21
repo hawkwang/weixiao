@@ -162,7 +162,7 @@ class WeixiaoSim(object):
                     #raw_input("Press Enter to continue...")
                     # FIXME - put this strange address into TBD_address table
                     print 'Note: ' + title + ' with place (' + place + ') is strange. So we will skip it...'
-                    instance.status = '2'
+                    instance.status = '3'
                     session.commit()
                     continue
                 #endif
@@ -210,6 +210,7 @@ class WeixiaoSim(object):
 
                 # this flag used to turn on and turn off the duplicate removal feature
                 #duplicate_removal = False;
+                instance.status = '1'
                 if(duplicate_removal==True):
                     # if len(Q1) == 0, regard this item as new item
                     Q1 = searchengine.process(query)
@@ -227,10 +228,11 @@ class WeixiaoSim(object):
                         self.addToLeleRepository(potentialItem)
                     except:
                         print 'exception happening'
+                        instance.status = '4'
+                    #end try-except
                 #endif
 
                 # label this item as analyzed in the table of db - lelespider
-                instance.status = '1'
                 session.commit()
 
             #end for
@@ -243,7 +245,7 @@ class WeixiaoSim(object):
         print 'begin to add to lele repository ... '
         # generate json item
         json_item = json.dumps(potentialItem)        
-        print json_item
+        #print json_item
        
         # add this item use web service, FIXME
         #leleService.addItem(json_item)
@@ -263,12 +265,12 @@ class WeixiaoSim(object):
         eventinfo['fee_description'] = potentialItem['feelist']
         eventinfo['price'] = potentialItem['fee']
         eventinfo['fixnum'] = '100'
-        print eventinfo
+        #print eventinfo
 
         url = self.url  #'http://wxlele.local/api/'
         eventinfo_json = json.dumps(eventinfo)
         info = urllib.urlencode({"AK":"robot.weixiao@1234567", "source":potentialItem['source'], "event":eventinfo_json})
-        print info
+        #print info
         response = urllib2.urlopen(url, info).read()
         json_data = json.loads(response)
         print json_data['result']

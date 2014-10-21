@@ -12,7 +12,7 @@ import pytz
 from datetime import tzinfo, timedelta, datetime
 import sys
 import map.baidumap
-
+import re
 
 def getDetailedInfo(address, city=u'北京市'):
 
@@ -139,7 +139,14 @@ def getDetailedInfo(address, city=u'北京市'):
     detailinfo['areacode'] = to_unicode_or_bust(loc_details['areacode'])
     detailinfo['longitude'] = to_unicode_or_bust(loc_details['longitude'])
     detailinfo['latitude'] = to_unicode_or_bust(loc_details['latitude'])
-
+    
+    match = re.search(u'北京市西城区文津街',detailinfo['formatted_address'])
+    if(match):
+        detailinfo['status'] = 0
+    else:
+        detailinfo['status'] = 1
+    #endif
+    
     session.close()
     return detailinfo
 

@@ -1,0 +1,15 @@
+cd csdn
+./runme &
+cd ..
+cd libcapital
+./runme &
+cd ..
+cd tiandaoedu
+./runme &
+cd ..
+cd  crawler-1
+./runme &
+cd ..
+cd douban
+./runme &
+cd ..

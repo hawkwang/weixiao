@@ -8,15 +8,15 @@ defaultname=items
 outputpath=../data/spider/
 
 current_time=$(date "+%s_%N")
-echo "Current Time : $current_time"
+#echo "Current Time : $current_time"
 
 txtfile=$defaultname.$current_time$txt
 jsonfile=$outputpath$defaultname.$current_time$json
 
-scrapy crawl weixiao -o $txtfile -t json
+#scrapy crawl weixiao -o $txtfile -t json
+scrapy crawl weixiao
+#mv $txtfile $jsonfile
 
-mv $txtfile $jsonfile
-
-rm $jsonfile
+#rm $jsonfile
 
 cd ..

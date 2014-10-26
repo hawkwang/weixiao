@@ -25,7 +25,7 @@ def validate_date(d):
 #end def
 
 def validate_time(t):
-    print 'validate time : ' + t
+    #print 'validate time : ' + t
     try:
         datetime.strptime(t, '%H:%M')
         return True
@@ -156,7 +156,7 @@ class LivingSocialPipeline(object):
         except:
             session.rollback()
             #raise
-            print '[WeixiaoCrawler] - this event already exists ... '
+            #print '[WeixiaoCrawler] - this event already exists ... '
         finally:
             session.close()
 

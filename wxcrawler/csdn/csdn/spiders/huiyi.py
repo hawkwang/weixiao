@@ -161,7 +161,7 @@ class HuiyiSpider(CrawlSpider):
         sys.setdefaultencoding('utf-8')
         self.items_buffer = {}
         from scrapy.conf import settings
-        settings.overrides['DOWNLOAD_TIMEOUT'] = 3600
+        #settings.overrides['DOWNLOAD_TIMEOUT'] = 3600
     #end def
 
     def parse(self, response):
@@ -182,7 +182,7 @@ class HuiyiSpider(CrawlSpider):
                 self.attributes[link] = [city, title, place]
 
                 if (not link) or (UrlChecker(link)==False):
-                    print "Parsing failed for URL {%s}" % format(link)
+                    log.msg( "Parsing failed for URL {%s}" % format(link) )
                     continue
                 else:
                     if isTargetPage(self.targetpattern,link):
@@ -208,13 +208,9 @@ class HuiyiSpider(CrawlSpider):
         place = self.attributes[response.url][2]
 
         datetime = response.xpath('//div[@class="act-head"]//dd/text()').extract()[0]
-        print datetime
         eventdate = getDate(datetime)  
-        print eventdate
         datetime = response.xpath('//div[@class="addr-time"]//li[1]/text()').extract()[0]
-        print datetime
         eventtime = getTime(datetime)
-        print eventtime
 
         #get raw image
         imageurl = response.xpath('//img[@class="ads"]/@src').extract()
@@ -267,7 +263,7 @@ class HuiyiSpider(CrawlSpider):
 
         #print item
         yield item
-        print "[weixiao] yield ..."
+        log.msg( "[weixiao] yield ...")
                 
 
     #end def

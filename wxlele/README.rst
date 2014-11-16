@@ -22,7 +22,7 @@ wxlele: Best event sharing and searching engine
    ------------------------------------------------
    1. 查看apache服务
       ps ax | grep httpd | grep -v grep
-   2. 启动
+   2. 启动 (ubuntu: sudo /etc/init.d/apache2 restart)
       /usr/local/zend/apache2/bin/httpd -f /usr/local/zend/apache2/conf/httpd.conf -k start
    
    launch mysql service

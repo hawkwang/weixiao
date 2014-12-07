@@ -264,7 +264,7 @@ class EventSpider(CrawlSpider):
         place = getLocation(desc)
         print place
 
-        source = 45
+        source = 11
         category =''
         link = response.request.url
         #get raw fee, FIXME

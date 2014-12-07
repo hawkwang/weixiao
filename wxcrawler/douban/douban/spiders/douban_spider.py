@@ -246,7 +246,7 @@ class DoubanSpider(CrawlSpider):
         md5 = ''
 
         #set source
-        source = 41
+        source = 9
         
         #
         #print '[weixiao] title - %s' % title

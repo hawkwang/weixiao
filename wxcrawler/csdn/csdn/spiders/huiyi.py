@@ -242,7 +242,7 @@ class HuiyiSpider(CrawlSpider):
         md5 = ''
 
         #set source
-        source = 44 #FIXME
+        source = 10 #FIXME
         
         #generate the item
         item = WeixiaoItem()

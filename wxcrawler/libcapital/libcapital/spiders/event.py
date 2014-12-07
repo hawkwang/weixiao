@@ -150,7 +150,7 @@ class EventSpider(CrawlSpider):
         try:
             hxs = HtmlXPathSelector(response)
             title = hxs.xpath('//*[@id="events_info"]/h3/text()').extract()[0].strip()
-            source = '42'
+            source = '7'
             city = 'beijing'
             category = ''
             link = response.request.url

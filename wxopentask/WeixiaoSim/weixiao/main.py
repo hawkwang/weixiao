@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import traceback
 import urllib
 import urllib2
 from urllib2 import *
@@ -250,9 +251,13 @@ class WeixiaoSim(object):
         # add this item use web service, FIXME
         #leleService.addItem(json_item)
         eventinfo = {}
+        eventinfo['source'] = potentialItem['source'] 
         eventinfo['imageurl'] = potentialItem['imageurl'] 
         eventinfo['originurl'] = potentialItem['originurl'] 
         eventinfo['address'] = potentialItem['place']
+        eventinfo['province'] = potentialItem['province']
+        eventinfo['city'] = potentialItem['city']
+        eventinfo['area'] = potentialItem['areaname']
         eventinfo['longitude'] = potentialItem['longitude']
         eventinfo['latitude'] = potentialItem['latitude']
         eventinfo['areacode'] = potentialItem['areacode']
@@ -265,15 +270,19 @@ class WeixiaoSim(object):
         eventinfo['fee_description'] = potentialItem['feelist']
         eventinfo['price'] = potentialItem['fee']
         eventinfo['fixnum'] = '100'
-        #print eventinfo
-
-        url = self.url  #'http://wxlele.local/api/'
-        eventinfo_json = json.dumps(eventinfo)
-        info = urllib.urlencode({"AK":"robot.weixiao@1234567", "source":potentialItem['source'], "event":eventinfo_json})
-        #print info
-        response = urllib2.urlopen(url, info).read()
-        json_data = json.loads(response)
-        print json_data['result']
+        print eventinfo
+        try:
+            url = self.url  #'http://wxlele.local/api/'
+            eventinfo_json = json.dumps(eventinfo)
+            print eventinfo_json
+            info = urllib.urlencode({"AK":"robot.weixiao@1234567", "source":potentialItem['source'], "event":eventinfo_json})
+            #print info
+            response = urllib2.urlopen(url, info).read()
+            print response
+            json_data = json.loads(response)
+            #print json_data['messageType']
+        except Exception, e:
+            traceback.print_exc()
         
         print 'end to add to lele repository ... '
         
@@ -320,7 +329,7 @@ if __name__ == '__main__':
         print 'we need lele service url ... '
         sys.exit()
     #endif
-
+    
     cmdargs = str(sys.argv)
     print ("Args list: %s " % sys.argv[1])
 

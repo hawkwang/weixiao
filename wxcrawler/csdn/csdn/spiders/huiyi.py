@@ -207,6 +207,9 @@ class HuiyiSpider(CrawlSpider):
         city = self.attributes[response.url][0]
         place = self.attributes[response.url][2]
 
+        log.msg("starting analyzing - %s" % format(title))
+        
+
         datetime = response.xpath('//div[@class="act-head"]//dd/text()').extract()[0]
         eventdate = getDate(datetime)  
         datetime = response.xpath('//div[@class="addr-time"]//li[1]/text()').extract()[0]
@@ -224,7 +227,7 @@ class HuiyiSpider(CrawlSpider):
         desc = desc.strip()
         #print desc
 
-        category = ''
+        category = 'IT'
 
         #get raw link
         link = response.request.url
@@ -263,7 +266,7 @@ class HuiyiSpider(CrawlSpider):
 
         #print item
         yield item
-        log.msg( "[weixiao] yield ...")
+        log.msg( "[weixiao] yield %s ..." % format(title) )
                 
 
     #end def

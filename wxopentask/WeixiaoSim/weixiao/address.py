@@ -142,9 +142,9 @@ def getDetailedInfo(address, city=u'北京市'):
     
     match = re.search(u'北京市西城区文津街',detailinfo['formatted_address'])
     if(match):
-        detailinfo['status'] = 0
-    else:
         detailinfo['status'] = 1
+    else:
+        detailinfo['status'] = 0
     #endif
     
     session.close()

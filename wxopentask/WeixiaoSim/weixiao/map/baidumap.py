@@ -73,9 +73,10 @@ def getDetailedInfo(address, city=u'北京市'):
     else:
         return detailinfo
     #end if
-    
+    print 'cool, we got lng and lat ...'    
     url = map_api_url + '?output=json&ak=HL2OtpqEFglWT1j2RoS62eRD' + '&location=' + str(lat) + ',' + str(lng)
     r = requests.get(url)
+    print r.text
     resp = json.loads(r.text)
     if resp['status']==0:
         
@@ -97,7 +98,7 @@ def getDetailedInfo(address, city=u'北京市'):
         detailinfo['areacode'] = areacode
         detailinfo['longitude'] = lng
         detailinfo['latitude'] = lat
-
+        print areacode
         return detailinfo
     #end if
 

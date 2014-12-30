@@ -13,3 +13,10 @@ cd ..
 cd douban
 ./runme &
 cd ..
+cd lvye
+./runme &
+cd ..
+cd huodongxing
+./runme &
+cd ..
+

@@ -89,14 +89,14 @@ def getDate(content):
     if (content==False):
         return ''
     content = content.replace('/','.')
-    pattern = u'(\d{4}-\d{2}-\d{2}|\d{4}\.\d{2}\.\d{2}|\d{4}年\d{1,2}月\d{1,2}日)'
+    pattern = u'(\d{4}-\d{1,2}-\d{1,2}|\d{4}\.\d{1,2}\.\d{1,2}|\d{4}年\d{1,2}月\d{1,2}日)'
     date_result = getmatch(pattern, content)
 
     if (date_result==False):
         return ''
 
     date_result = re.sub(u'(年|月|日|\-)','.',date_result)
-    date_result = getmatch(u'\d{4}.\d{2}.\d{2}', date_result)
+    date_result = getmatch(u'\d{4}.\d{1,2}.\d{1,2}', date_result)
     if (date_result==False):
         return ''
 
@@ -169,8 +169,8 @@ def getLocation(content):
 
 def getUrls():
     urls = []
-    baseUrl = 'http://bj.huodongxing.com/search?qs=%E5%8C%97%E4%BA%AC&pi='
-    for category in range(1,50):
+    baseUrl = 'http://bj.huodongxing.com/events?type=0&show=list&city=北京&page='
+    for category in range(1,100):
         url1 = baseUrl + str(category)
         urls.append(url1)
     #end for
@@ -187,7 +187,7 @@ class EventSpider(CrawlSpider):
     attributes={}
     
     rules = ()
-    targetpattern = r'http://bj.huodongxing.com/event/\d+'
+    targetpattern = r'http://bj.huodongxing.com/event/\d+.'
 
     def __init__(self, name=None, **kwargs):
         super(EventSpider, self).__init__(name, **kwargs)
@@ -225,10 +225,10 @@ class EventSpider(CrawlSpider):
                 if(month<6):
                     year = '2015'
                 date = year + '.' + date
-                print date
-                print time
+                #print date
+                #print time
 
-                #print title
+                print title
                 #print city
 
                 self.attributes[link] = [city, title, imageurl, date, time]

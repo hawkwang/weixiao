@@ -88,14 +88,14 @@ def getmatch(pattern, content):
 def getDate(content):
     if (content==False):
         return ''
-    pattern = u'(\d{4}-\d{2}-\d{2}|\d{4}\.\d{2}\.\d{2}|\d{4}/\d{2}/\d{2}|\d{4}年\d{1,2}月\d{1,2}日)'
+    pattern = u'(\d{4}-\d{1,2}-\d{1,2}|\d{4}\.\d{1,2}\.\d{1,2}|\d{4}/\d{1,2}/\d{1,2}|\d{4}年\d{1,2}月\d{1,2}日)'
     date_result = getmatch(pattern, content)
 
     if (date_result==False):
         return ''
 
     date_result = re.sub(u'(年|月|日|\-|/)','.',date_result)
-    date_result = getmatch(u'\d{4}.\d{2}.\d{2}', date_result)
+    date_result = getmatch(u'\d{4}.\d{1,2}.\d{1,2}', date_result)
     if (date_result==False):
         return ''
 
@@ -185,6 +185,7 @@ class EventSpider(CrawlSpider):
             feelist = ''
             
             datetime = response.xpath('/html/body/div[2]/div[1]/div[1]/div[2]/div[2]/div/div[2]/dl[2]/dd/text()').extract()[0].strip()
+            print 'datetime - ' + datetime
             eventdate = getDate(datetime) 
             eventtime = getTime(datetime) 
 

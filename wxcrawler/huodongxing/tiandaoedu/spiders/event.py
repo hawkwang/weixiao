@@ -2,7 +2,8 @@
 # -*- coding: UTF-8 -*-
 
 import urlparse
-
+#from pybloomfilter import BloomFilter
+import time
 import scrapy
 from scrapy import log
 from scrapy.http import Request
@@ -13,7 +14,6 @@ import sys
 import re
 import random
 from tiandaoedu.items import WeixiaoItem
-
 
 def UrlChecker(url):
     regex = re.compile(
@@ -169,8 +169,8 @@ def getLocation(content):
 
 def getUrls():
     urls = []
-    baseUrl = 'http://bj.huodongxing.com/events?type=0&show=list&city=北京&page='
-    for category in range(1,100):
+    baseUrl = 'http://www.huodongxing.com/eventlist?orderby=n&city=北京&page='
+    for category in range(1,10):
         url1 = baseUrl + str(category)
         urls.append(url1)
     #end for
@@ -187,7 +187,8 @@ class EventSpider(CrawlSpider):
     attributes={}
     
     rules = ()
-    targetpattern = r'http://bj.huodongxing.com/event/\d+.'
+    targetpattern = r'http://www.huodongxing.com/event/\d+.'
+    #bf = BloomFilter(10000000, 0.001, 'filter.bloom')
 
     def __init__(self, name=None, **kwargs):
         super(EventSpider, self).__init__(name, **kwargs)
@@ -201,7 +202,8 @@ class EventSpider(CrawlSpider):
     def parse(self, response):
         try:
             log.msg("Parsing detailed info for URL - %s" % format(response.request.url))
-            items = response.xpath('//ul[@class="event-horizontal-list"]/li')
+            #time.sleep(5)
+            items = response.xpath('//ul[@class="event-horizontal-list-new"]/li')
             for index, item in enumerate(items):
                 #print item.extract()
                 imageurl = item.xpath('.//a/img/@src').extract()
@@ -210,20 +212,25 @@ class EventSpider(CrawlSpider):
 	        else:
 	            imageurl = imageurl[0]
 
-                link = 'http://bj.huodongxing.com' + item.xpath('.//h3/a/@href').extract()[0]
+                link = 'http://www.huodongxing.com' + item.xpath('.//h3/a/@href').extract()[0]
+                print link
 
                 title = item.xpath('.//h3/a/text()').extract()[0]
 
                 city = u'北京'
 
-                datetime = item.xpath('.//span[@class="time"]/text()').extract()[0]
+                #datetime = item.xpath('.//span[@class="time"]/text()').extract()[0]
+                firstItem = item.xpath('.//div').extract()[0]
+                datetime = stripHTMLTags(firstItem)
+                print datetime
                 #print datetime
                 date = getAnotherDate(datetime)
-                time = getTime(datetime)
+                #time = getTime(datetime)
+                time = '00:00'
                 month = int(date.split(".")[0])
-                year = '2014'
-                if(month<6):
-                    year = '2015'
+                year = '2015'
+                #if(month<6):
+                #    year = '2015'
                 date = year + '.' + date
                 #print date
                 #print time
@@ -237,7 +244,9 @@ class EventSpider(CrawlSpider):
                     print "Parsing failed for URL {%s}" % format(link)
                     continue
                 else:
-                    if isTargetPage(self.targetpattern,link):
+                    print link
+                    if (isTargetPage(self.targetpattern,link)):
+                        #self.bf.add(link)
                         yield Request( url=link, callback=self.parse_details)
                         continue    
                     #end if
@@ -254,6 +263,8 @@ class EventSpider(CrawlSpider):
 
     def parse_details(self, response):
         log.msg("Cool -parsing detailed info for URL - %s" % format(response.request.url))
+        time.sleep(5)
+        #time.sleep(5)
         city = self.attributes[response.url][0]
         title = self.attributes[response.url][1]
         imageurl = self.attributes[response.url][2]
@@ -272,7 +283,11 @@ class EventSpider(CrawlSpider):
 
         source = 17
 
-        category = response.xpath('//div[@class="tags"]/a/text()').extract()[0]
+        try:
+            category = response.xpath('//div[@class="tags"]/a/text()').extract()[0]
+        except Exception as e:
+            category = ''
+
         link = response.request.url
         #get raw fee, FIXME
         fee = '0' 
@@ -300,7 +315,7 @@ class EventSpider(CrawlSpider):
         item['status'] = status
         item['md5'] = md5
 
-        #print item
+        print item
         yield item
         print "[weixiao] yield ..."
         

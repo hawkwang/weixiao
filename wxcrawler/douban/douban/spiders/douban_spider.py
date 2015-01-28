@@ -128,24 +128,54 @@ def getCity(content):
     return city_result
 #enddef
 
+def getUrls():
+    urls = []
+    baseUrl = 'http://www.mosh.cn/beijing/park/latest/?page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
+    baseUrl = 'http://www.mosh.cn/beijing/park/movie/?page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
+    baseUrl = 'http://www.mosh.cn/beijing/park/music/?page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
+    baseUrl = 'http://www.mosh.cn/beijing/drama/latest/?page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
+    baseUrl = 'http://www.mosh.cn/beijing/exbt/latest/?page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
+    baseUrl = 'http://www.mosh.cn/beijing/sports/latest/?page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
+    baseUrl = 'http://www.mosh.cn/beijing/other/latest/?page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
+
+    return urls
+#end def
+
 class DoubanSpider(CrawlSpider):
     """ General configuration of the Crawl Spider """
     name = 'douban'
     allowed_domains = ["mosh.cn"]
     #allowed_domains = ["www.douban.com"]
     #start_urls = ['http://shanghai.douban.com/events/week-all','http://beijing.douban.com/events/week-all'] # urls from which the spider will start crawling
-    start_urls = [
-        'http://www.mosh.cn/beijing/park/latest/', 
-        'http://www.mosh.cn/beijing/movie/latest/', 
-        'http://www.mosh.cn/beijing/music/latest/', 
-        'http://www.mosh.cn/beijing/drama/latest/', 
-        'http://www.mosh.cn/beijing/exbt/latest/', 
-        'http://www.mosh.cn/beijing/sports/latest/', 
-        'http://www.mosh.cn/beijing/other/latest/', 
-        'http://www.mosh.cn/beijing/events/week/', 
-        'http://www.mosh.cn/beijing/events/latest/', 
-        'http://www.mosh.cn']
-    random.shuffle( start_urls ) 
+    start_urls = getUrls()
     # urls from which the spider will start crawling
     rules = ()
     targetpattern = r'http://www.mosh.cn/events/\d+'
@@ -186,7 +216,7 @@ class DoubanSpider(CrawlSpider):
                     continue    
                 #end if
                 #log.msg("Getting link URL %s" % format(v_url))
-                yield Request( url=v_url, callback=self.parse )
+                #yield Request( url=v_url, callback=self.parse )
             #end if
         #end for
     #end def

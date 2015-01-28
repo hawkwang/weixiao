@@ -175,7 +175,7 @@ class EventSpider(CrawlSpider):
             
             source = '16'
             city = 'beijing'
-            category = '户外'
+            category = u'户外'
             link = response.request.url
 
             #get raw fee, FIXME

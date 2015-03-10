@@ -169,7 +169,19 @@ def getLocation(content):
 
 def getUrls():
     urls = []
-    baseUrl = 'http://www.huodongxing.com/eventlist?orderby=n&city=北京&page='
+    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=n&city=北京&page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
+
+    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=v&city=北京&page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
+
+    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=r&city=北京&page='
     for category in range(1,10):
         url1 = baseUrl + str(category)
         urls.append(url1)
@@ -213,7 +225,7 @@ class EventSpider(CrawlSpider):
 	            imageurl = imageurl[0]
 
                 link = 'http://www.huodongxing.com' + item.xpath('.//h3/a/@href').extract()[0]
-                print link
+                #print link
 
                 title = item.xpath('.//h3/a/text()').extract()[0]
 
@@ -222,7 +234,6 @@ class EventSpider(CrawlSpider):
                 #datetime = item.xpath('.//span[@class="time"]/text()').extract()[0]
                 firstItem = item.xpath('.//div').extract()[0]
                 datetime = stripHTMLTags(firstItem)
-                print datetime
                 #print datetime
                 date = getAnotherDate(datetime)
                 #time = getTime(datetime)
@@ -235,7 +246,7 @@ class EventSpider(CrawlSpider):
                 #print date
                 #print time
 
-                print title
+                #print title
                 #print city
 
                 self.attributes[link] = [city, title, imageurl, date, time]
@@ -271,7 +282,7 @@ class EventSpider(CrawlSpider):
         eventdate = self.attributes[response.url][3]
         eventtime = self.attributes[response.url][4]
 
-        #print title
+        print title
         #print city
 
 	desc = response.xpath('//div[@id="event_desc_page"]').extract()[0]
@@ -315,7 +326,7 @@ class EventSpider(CrawlSpider):
         item['status'] = status
         item['md5'] = md5
 
-        print item
+        #print item
         yield item
         print "[weixiao] yield ..."
         

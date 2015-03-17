@@ -140,6 +140,35 @@ def getTime(content):
     return time_result
 #enddef
 
+def getDetailedTime(content):
+    if (content==False):
+        return ''
+    pattern = u'\d{1,2}:\d{1,2} (AM|PM)'
+    time_result = getmatch(pattern, content)
+
+    if (time_result==False):
+        return '00:00'
+    #endif
+
+    #get time without am or pm
+    pattern = u'\d{1,2}:\d{1,2}'
+    time_without_am_or_pm = getmatch(pattern, time_result) 
+
+    #get am or pm
+    pattern = u'AM|PM'
+    isafternoon = getmatch(pattern, time_result)
+    if(isafternoon=='AM'):
+        return time_without_am_or_pm
+
+    #deal with pm time
+    timedetail = time_without_am_or_pm.split(':')
+    hour = int(timedetail[0]) + 12
+    mini = int(timedetail[1])
+    
+    return str(hour) + ':' + timedetail[1]
+    
+#enddef
+
 def getCity(content):
     
     if (content==False):
@@ -282,6 +311,10 @@ class EventSpider(CrawlSpider):
         eventdate = self.attributes[response.url][3]
         eventtime = self.attributes[response.url][4]
 
+        timedetailinfo = response.xpath('//div[@class="media-body"]/div[1]').extract()[0]
+        timedetailinfo = getDetailedTime(timedetailinfo)
+        print timedetailinfo
+
         print title
         #print city
 
@@ -317,7 +350,7 @@ class EventSpider(CrawlSpider):
         item['title'] = title
         item['link'] = link
         item['date'] = eventdate
-        item['time'] = eventtime
+        item['time'] = timedetailinfo
         item['place'] = place
         item['fee'] = fee
         item['feelist'] = feelist

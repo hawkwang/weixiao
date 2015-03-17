@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*- 
 import scrapy
-from Food.items import WeixiaoItem
+from KTV.items import WeixiaoItem
 from scrapy.http import Request
 from scrapy.selector import Selector
 import sys
@@ -37,13 +37,13 @@ def to_unicode_or_bust(obj, encoding='utf-8'):
     return obj
 #end def
 
-class food_spider(scrapy.Spider):
+class ktv_spider(scrapy.Spider):
 	
         reload(sys)
         sys.setdefaultencoding('utf-8')
- 	name = "food.org"
+	name = "ktv"
 	start_urls = [
-	"http://bj.meituan.com/category/meishi/all/"
+	"http://bj.meituan.com/category/dianying/all/"
 	#"http://bj.meituan.com/category/meishi/all/page1"
 	]
 	#start_urls = ["http://bj.meituan.com/deal/27597943.html"]
@@ -84,7 +84,7 @@ class food_spider(scrapy.Spider):
                 fee = getFee(feemore)
                 print feemore
                 print fee
-                #fee = response.xpath('//div[@class="deal-component-price cf"]/h2/strong/text()').extract()[0]
+		#fee = response.xpath('//div[@class="deal-component-price cf"]/h2/strong/text()').extract()[0]
 		
 		link = response.url
 		
@@ -105,19 +105,13 @@ class food_spider(scrapy.Spider):
 
 		places = response.xpath('//div[@class="all-biz cf"]/@data-poi').extract()[0].encode('utf-8')
 		place = re.findall(r'address.*?,', places)# ['address":"\uxxxx\uxxxx...\uxxxx",', 'address":"...",', ...]
-                locations = []		
+		
 		if len(place) > 2:
 			place = place[0:3]
-                        locations.append(place[0][10:-2])
-                        locations.append(place[1][10:-2])
-                        locations.append(place[2][10:-2])
 			place = place[0][10:-2] + "||" + place[1][10:-2] + "||" + place[2][10:-2]
 		elif len(place) == 2:
-                        locations.append(place[0][10:-2])
-                        locations.append(place[1][10:-2])
 			place = place[0][10:-2] + "||" + place[1][10:-2]
 		else:
-                        locations.append(place[0][10:-2])
 			place = place[0][10:-2]
 
 		j = 0
@@ -130,14 +124,14 @@ class food_spider(scrapy.Spider):
 				places = places + place[j]
 				j = j + 1 
 
-		place = places
+                place = places
                 print to_unicode_or_bust(place)
                 locations = place.split('||')
-                
+
                 for location in locations :
-		    item = WeixiaoItem()
-                    item['category'] = u'美食'
-                    item['source'] = '28'
+                    item = WeixiaoItem()
+                    item['category'] = u'影院'
+                    item['source'] = '30'
                     item['city'] = 'beijing'
                     item['feelist'] = ''
                     item['md5'] = ''

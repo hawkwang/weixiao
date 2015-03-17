@@ -3,8 +3,32 @@ import scrapy
 from KTV.items import WeixiaoItem
 from scrapy.http import Request
 from scrapy.selector import Selector
-import re
 import sys
+import re
+
+def getmatch(pattern, content):
+    match = re.search(pattern, content)
+    if(match):
+        s = match.start()
+        e = match.end()
+        #show(content[s:e])
+        return content[s:e]
+    #endif
+    return False
+#enddef
+
+def getFee(content):
+    if(content==False):
+        return '';
+
+    pattern = u'((\d|\.)+)'    #need improve
+    result = getmatch(pattern, content)
+    if (result==False):
+        return ''
+
+    return result
+
+#enddef
 
 def to_unicode_or_bust(obj, encoding='utf-8'):
     if isinstance(obj, basestring):
@@ -56,7 +80,11 @@ class ktv_spider(scrapy.Spider):
 		title = response.xpath('//h1[@class="deal-component-title"]/text()').extract()[0]
 		title = title_prefix + title
 
-		fee = response.xpath('//div[@class="deal-component-price cf"]/h2/strong/text()').extract()[0]
+                feemore = response.xpath('//div[@class="deal-component-description"]/text()').extract()[0]
+                fee = getFee(feemore)
+                print feemore
+                print fee
+		#fee = response.xpath('//div[@class="deal-component-price cf"]/h2/strong/text()').extract()[0]
 		
 		link = response.url
 		

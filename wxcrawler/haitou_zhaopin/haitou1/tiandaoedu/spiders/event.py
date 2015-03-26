@@ -2,8 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import urlparse
-#from pybloomfilter import BloomFilter
-import time
+
 import scrapy
 from scrapy import log
 from scrapy.http import Request
@@ -14,7 +13,7 @@ import sys
 import re
 import random
 from tiandaoedu.items import WeixiaoItem
-from BeautifulSoup import BeautifulSoup
+#import redis
 
 def UrlChecker(url):
     regex = re.compile(
@@ -36,11 +35,6 @@ def isTargetPage(targetpattern, url):
         return True
     return False
 #end def
-
-def stripAllTags( html ):
-    if html is None:
-        return ''
-    return ''.join( BeautifulSoup( html ).findAll( text = True ) )
 
 def stripHTMLTags (html):
     """
@@ -94,7 +88,6 @@ def getmatch(pattern, content):
 def getDate(content):
     if (content==False):
         return ''
-    content = content.replace('/','.')
     pattern = u'(\d{4}-\d{1,2}-\d{1,2}|\d{4}\.\d{1,2}\.\d{1,2}|\d{4}年\d{1,2}月\d{1,2}日)'
     date_result = getmatch(pattern, content)
 
@@ -112,7 +105,6 @@ def getDate(content):
 def getAnotherDate(content):
     if (content==False):
         return ''
-    content = content.replace('/','.')
     pattern = u'(\d{1,2}-\d{1,2}|\d{1,2}\.\d{1,2}|\d{1,2}月\d{1,2}日)'
     date_result = getmatch(pattern, content)
 
@@ -146,35 +138,6 @@ def getTime(content):
     return time_result
 #enddef
 
-def getDetailedTime(content):
-    if (content==False):
-        return ''
-    pattern = u'\d{1,2}:\d{1,2} (AM|PM)'
-    time_result = getmatch(pattern, content)
-
-    if (time_result==False):
-        return '00:00'
-    #endif
-
-    #get time without am or pm
-    pattern = u'\d{1,2}:\d{1,2}'
-    time_without_am_or_pm = getmatch(pattern, time_result) 
-
-    #get am or pm
-    pattern = u'AM|PM'
-    isafternoon = getmatch(pattern, time_result)
-    if(isafternoon=='AM'):
-        return time_without_am_or_pm
-
-    #deal with pm time
-    timedetail = time_without_am_or_pm.split(':')
-    hour = int(timedetail[0]) + 12
-    mini = int(timedetail[1])
-    
-    return str(hour) + ':' + timedetail[1]
-    
-#enddef
-
 def getCity(content):
     
     if (content==False):
@@ -204,38 +167,25 @@ def getLocation(content):
 
 def getUrls():
     urls = []
-    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=n&city=北京&page='
+    baseUrl = 'http://zph.haitou.cc/bj/uni-0/after/hold/page-'
     for category in range(1,10):
-        url1 = baseUrl + str(category)
+        url1 = baseUrl + str(category) + '/'
         urls.append(url1)
     #end for
-
-    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=v&city=北京&page='
-    for category in range(1,10):
-        url1 = baseUrl + str(category)
-        urls.append(url1)
-    #end for
-
-    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=r&city=北京&page='
-    for category in range(1,10):
-        url1 = baseUrl + str(category)
-        urls.append(url1)
-    #end for
-
+    #urls.append('http://xjh.haitou.cc/article/208233.html')
     return urls
 #end def
 
-
 class EventSpider(CrawlSpider):
     name = "event"
-    allowed_domains = ["huodongxing.com"]
+    allowed_domains = ["http://zph.haitou.cc"]
     start_urls = getUrls()
 
     attributes={}
     
     rules = ()
-    targetpattern = r'http://www.huodongxing.com/event/\d+.'
-    #bf = BloomFilter(10000000, 0.001, 'filter.bloom')
+    targetpattern = r'http://zph.haitou.cc/article/\d+.html'
+    #redisDB = redis.StrictRedis(host='localhost', port=6379, db=0)
 
     def __init__(self, name=None, **kwargs):
         super(EventSpider, self).__init__(name, **kwargs)
@@ -247,53 +197,30 @@ class EventSpider(CrawlSpider):
     #end def
 
     def parse(self, response):
+        needitems = []
         try:
             log.msg("Parsing detailed info for URL - %s" % format(response.request.url))
-            #time.sleep(5)
-            items = response.xpath('//ul[@class="event-horizontal-list-new"]/li')
+            items = response.xpath('//td[@class="preach-tbody-title"]')
             for index, item in enumerate(items):
-                #print item.extract()
-                imageurl = item.xpath('.//a/img/@src').extract()
-	        if(len(imageurl)==0):
-	            imageurl = ''
-	        else:
-	            imageurl = imageurl[0]
 
-                link = 'http://www.huodongxing.com' + item.xpath('.//h3/a/@href').extract()[0]
-                #print link
+                link = item.xpath('.//a/@href').extract()[0]
+                link = 'http://zph.haitou.cc' + link
+                print link
 
-                title = item.xpath('.//h3/a/text()').extract()[0]
-
-                city = u'北京'
-
-                #datetime = item.xpath('.//span[@class="time"]/text()').extract()[0]
-                firstItem = item.xpath('.//div').extract()[0]
-                datetime = stripHTMLTags(firstItem)
-                #print datetime
-                date = getAnotherDate(datetime)
-                #time = getTime(datetime)
-                time = '00:00'
-                month = int(date.split(".")[0])
-                year = '2015'
-                #if(month<6):
-                #    year = '2015'
-                date = year + '.' + date
-                #print date
-                #print time
-
-                #print title
-                #print city
-
-                self.attributes[link] = [city, title, imageurl, date, time]
-
-                if (not city) or (not link) or (UrlChecker(link)==False):
+                if (not link) or (UrlChecker(link)==False):
                     print "Parsing failed for URL {%s}" % format(link)
                     continue
                 else:
-                    print link
-                    if (isTargetPage(self.targetpattern,link)):
-                        #self.bf.add(link)
-                        yield Request( url=link, callback=self.parse_details)
+                    if isTargetPage(self.targetpattern,link):
+                        print 'yes ...'
+                        f = open('../workfile', 'a')
+                        f.write(link+'\n')
+                        f.close()
+                        #yield Request( link, callback = self.parse_details1 )
+                        #if self.redisDB.exists(link)==False :
+                        #    self.redisDB.set(link, '0')
+                        needitems.append(Request( link, callback = self.parse_details1 ))
+                        print 'yes 1 ...'
                         continue    
                     #end if
                 #end if
@@ -304,42 +231,41 @@ class EventSpider(CrawlSpider):
             log.msg("Parsing failed for URL {%s}"%format(response.request.url))
             raise
         #end try-except
-
+        print 'return'
+        return needitems
     #end def
+ 
+    def parse_details1(self, response):
+        print 'hehe'
+    #enddef
 
     def parse_details(self, response):
+        print 'yes 2'
         log.msg("Cool -parsing detailed info for URL - %s" % format(response.request.url))
-        time.sleep(5)
-        #time.sleep(5)
-        city = self.attributes[response.url][0]
-        title = self.attributes[response.url][1]
-        imageurl = self.attributes[response.url][2]
-        eventdate = self.attributes[response.url][3]
-        eventtime = self.attributes[response.url][4]
-
-        timedetailinfo = response.xpath('//div[@class="media-body"]/div[1]').extract()[0]
-        timedetailinfo = getDetailedTime(timedetailinfo)
-        print timedetailinfo
-
+        city = u'北京'
+        title = response.xpath('//h3[@class="heading"]').extract()[0]
+        title = stripHTMLTags(title)
+        imageurl = ''
         print title
-        #print city
+        print city
 
-	desc = response.xpath('//div[@id="event_desc_page"]').extract()[0]
-        #desc = stripHTMLTags(desc)
-        desc = stripAllTags(desc)
-        desc = filter(lambda x: not re.match(r'^\s*$', x), desc)
-        print desc
+	desc = response.xpath('//div[@class="panel-body-text"]').extract()[0]
+        desc = stripHTMLTags(desc)
 
-        place = response.xpath('//div[@class="address"]/a/text()').extract()[0]
-        #print place
+        eventdate = response.xpath('//div[@class="holdTime"]/text()').extract()
+        eventtime = getTime(eventdate)
+        eventdate = getDate(eventdate)
 
-        source = 17
+        print eventdate
+        print eventtime
 
-        try:
-            category = response.xpath('//div[@class="tags"]/a/text()').extract()[0]
-        except Exception as e:
-            category = ''
+        place1 = response.xpath('//div[@class="article-info-box"]/div[1]/p[1]/span/text()').extract()[0]
+        place2 = response.xpath('//div[@class="article-info-box"]/div[1]/p[3]/span/text()').extract()[0]
+        place = place1 + ' ' + place2
+        print place
 
+        source = 27
+        category = u'招聘-宣讲会'
         link = response.request.url
         #get raw fee, FIXME
         fee = '0' 
@@ -358,7 +284,7 @@ class EventSpider(CrawlSpider):
         item['title'] = title
         item['link'] = link
         item['date'] = eventdate
-        item['time'] = timedetailinfo
+        item['time'] = eventtime
         item['place'] = place
         item['fee'] = fee
         item['feelist'] = feelist

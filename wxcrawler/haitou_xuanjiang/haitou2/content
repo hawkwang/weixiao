@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js ng-app:App" ng-app="App" id="ng-app">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" cotent="IE=edge,chrome=1" />
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<title>秦皇岛康姿百德高新技术开发有限公司 - 宣讲会查询系统 - 海投网</title>
+	<meta name="keywords" content="海投网,宣讲会,2015,北京师范大学,秦皇岛康姿百德高新技术开发有限公司,企业招聘：秦皇岛康姿百德高新技术开发有限公司（小型双选会）,北京师范大学学生就业指导中心,宣讲会查询系统" />
+	<meta name="description" content="【海投网2015宣讲会查询系统】秦皇岛康姿百德高新技术开发有限公司将于2015-04-16在北京师范大学举办宣讲会，信息来源为北京师范大学学生就业指导中心，企业招聘：秦皇岛康姿百德高新技术开发有限公司（小型双选会）。" />
+
+				<link rel="stylesheet" href="http://base.haitou.cc/assets/base.min.css?v=1426436067">
+	
+	<style>[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {display: none !important;}</style>
+
+	<link rel="stylesheet" href="/css/main.css" />
+
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if IE 9]>
+		<script type="text/javascript" src="http://base.haitou.cc/assets/xdomain.min.js" slave="http://home.haitou.cc/proxy.html"></script>
+		<![endif]-->
+
+	<!--[if IE 8]>
+		<script type="text/javascript" src="http://base.haitou.cc/assets/xdomain.min.js" slave="http://home.haitou.cc/proxy.html"></script>
+		<![endif]-->
+
+	<!--[if IE 8]>
+	<script>
+		document.createElement('ng-include');
+		document.createElement('ng-pluralize');
+		document.createElement('ng-view');
+		// Optionally these for CSS
+		document.createElement('ng:include');
+		document.createElement('ng:pluralize');
+		document.createElement('ng:view');
+	</script>
+
+		<script type="text/javascript" src="http://base.haitou.cc/assets/ie8.min.js"></script>
+	<link href="http://base.haitou.cc/assets/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+	<link href="/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+	<script src="/respond.proxy.js"></script>
+		<![endif]-->
+
+
+	<script>
+		var _hmt = _hmt || [];
+		(function() {var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?2010a27ca18ae12b96df00b3e73dd033";
+					var s = document.getElementsByTagName("script")[0]; 
+					s.parentNode.insertBefore(hm, s);})();
+	</script>
+</head>
+
+<body style="overflow: hidden;" data-home-url="http://home.haitou.cc/" data="1427040615">
+
+<div id="wrapper" ng-controller="UserManager">
+	<!-- 顶栏 -->
+	<nav class="navbar navbar-default navbar-static-top" role="navigation">
+		<!-- 顶栏 左栏 -->
+		<div class="navbar-header">
+<!--
+			<button type="button" class="navbar-toggle pull-left margin left" data-toggle="collapse" data-target=".sidebar-collapse">
+				<span class="sr-only">海投网</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+-->
+			<span class="navbar-brand"><img src="http://base.haitou.cc/image/logo.png" alt=""></span>
+			<div class="dropdown">
+				<a class="switch-city dropdown-toggle" data-toggle="dropdown" href="#">北京 <i class="fa fa-angle-down fa-fw"></i></a>
+				<div class="dropdown-menu animated flipInY dropdown-city">
+						<p class="not-close">请选择你所在的地区</p>
+													<a href="/bj/" data-value="bj">北京</a>
+													<a href="/sh/" data-value="sh">上海</a>
+													<a href="/gz/" data-value="gz">广州</a>
+													<a href="/wh/" data-value="wh">武汉</a>
+													<a href="/nj/" data-value="nj">南京</a>
+													<a href="/xa/" data-value="xa">西安</a>
+													<a href="/cd/" data-value="cd">成都</a>
+													<a href="/cq/" data-value="cq">重庆</a>
+													<a href="/hf/" data-value="hf">合肥</a>
+													<a href="/cs/" data-value="cs">长沙</a>
+													<a href="/dl/" data-value="dl">大连</a>
+													<a href="/tj/" data-value="tj">天津</a>
+													<a href="/hz/" data-value="hz">杭州</a>
+													<a href="/jn/" data-value="jn">济南</a>
+													<a href="/fz/" data-value="fz">福州</a>
+													<a href="/zz/" data-value="zz">郑州</a>
+													<a href="/nc/" data-value="nc">南昌</a>
+													<a href="/cc/" data-value="cc">长春</a>
+										</div>
+			</div>
+		</div>
+
+		<!-- 顶栏 右栏 -->
+		<ul class="navbar-top-links navbar-right navbar-tool-btn hidden-xs">
+
+			<!-- 顶栏 右栏 通知 -->
+						<!-- 顶栏 右栏 用户 -->
+			<li class="dropdown">
+				<a class="dropdown-toggle user" data-toggle="dropdown" href="#">
+					<i class="fa fa-user fa-fw"></i> <i class="fa fa-angle-down"></i>
+				</a>
+				<ul class="dropdown-menu animated fadeInUp">
+											<li>
+							<a href="javascript:void(0)" data-toggle="modal" data-target="#userModal" ng-click="switchView('login')">
+								<i class="fa fa-sign-in fa-fw"></i> 用户登录
+							</a>
+						</li>
+						<li class="notBorder">
+							<a href="javascript:void(0)" data-toggle="modal" data-target="#userModal" ng-click="switchView('register')">
+								<i class="fa fa-book fa-fw"></i> 用户注册
+							</a>
+						</li>
+						<li>
+							<a href="http://company.haitou.cc/" target="_blank">
+								<i class="fa fa-building-o fa-fw"></i> 企业入口
+							</a>
+						</li>
+						<li>
+							<a href="http://wpa.qq.com/msgrd?v=3&uin=3083556504&site=qq&menu=yes" target="_blank">
+								<i class="fa fa-users fa-fw"></i> 联系客服
+							</a>
+						</li>
+									</ul>
+			</li>
+		</ul>
+
+		<ul class="navbar-top-links navbar-right navbar-main-menu hidden-xs">
+							<li >
+					<a href="http://www.haitou.cc/">首&nbsp;&nbsp;页</a>
+				</li>
+							<li class="active">
+					<a href="http://xjh.haitou.cc/">宣讲会</a>
+				</li>
+							<li >
+					<a href="http://zph.haitou.cc/">招聘会</a>
+				</li>
+							<li >
+					<a href="http://xyzp.haitou.cc/">招聘信息</a>
+				</li>
+							<li >
+					<a href="http://sxxx.haitou.cc/">实习信息</a>
+				</li>
+							<li >
+					<a href="http://mjfx.haitou.cc/">面试经验</a>
+				</li>
+							<li >
+					<a href="http://bgt.haitou.cc/">曝光台</a>
+				</li>
+							<li >
+					<a href="http://zycp.haitou.cc/">职业测评</a>
+				</li>
+							<li >
+					<a href="http://app.haitou.cc/">APP下载</a>
+				</li>
+						<li class="dropdown navbar-main-menu-more" ng-cloak>
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					更多 <i class="fa fa-angle-down"></i>
+				</a>
+				<ul class="dropdown-menu animated fadeInUp">
+				</ul>
+			</li>
+		</ul>
+	</nav>
+
+	<!-- 边栏 -->
+	<nav class="navbar-default navbar-static-side hidden-xs" role="navigation">
+					<!-- 边栏 未登录 -->
+			<div class="sidebar-login">
+				<div class="sidebar-status">
+					<div class="xjh-status">
+						<i class="fa fa-users fa-3x"></i>
+						<p class="xjh-status-title">宣讲会总数</p>
+						<p class="xjh-status-num">124,649</p>
+					</div>
+					<div class="other-status">
+						<span>招聘 <span class="other-status-num">479,369</span> 条</span>
+						<span class="text-success">｜</span>
+						<span>实习 <span class="other-status-num">40,091</span> 条</span>
+					</div>
+				</div>
+				<div class="sidebar-user-action">
+					<a href="javascript:void(0)" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#userModal" ng-click="switchView('register')">注&nbsp;&nbsp;册</a>
+					<a id="loginBtn" href="javascript:void(0)" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#userModal" ng-click="switchView('login')">登&nbsp;&nbsp;录</a>
+				</div>
+			</div>
+		
+		<!-- 边栏 子导航 -->
+		<div class="sidebar-menu">
+			
+			<ul class="nav">
+														<li >
+						<a href="/bj/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							全部信息													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-999/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							官方认证													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-10/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							清华大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-11/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							北京大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-12/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							中国人民大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-13/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							北京理工大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-14/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							北京航空航天大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-18/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							北京科技大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-72/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							北京邮电大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-17/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							北京交通大学													</a>
+					</li>
+														<li class="active">
+						<a href="/bj/uni-73/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							北京师范大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-16/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							中央财经大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-74/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							中国政法大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-161/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							对外经济贸易大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-15/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							中国矿业大学(北京)													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-90/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							华北电力大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-19/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							中国农业大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-91/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							中国石油大学(北京)													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-92/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							北京化工大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-93/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							北京工业大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-96/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							中国地质大学(北京)													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-129/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							中央民族大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-75/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							中国传媒大学													</a>
+					</li>
+														<li >
+						<a href="/bj/uni-163/">
+							<i class="fa fa-angle-right fa-fw"></i>
+							北京外国语大学													</a>
+					</li>
+								<li class="side-menu-bottom"></li>
+			</ul>
+			
+					</div>
+	</nav>
+
+			<!-- Modal -->
+		<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<!-- 登录框 -->
+				<div class="modal-content" ng-show="modalView == 'login'">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title" id="myModalLabel">登&nbsp;&nbsp;录</h4>
+					</div>
+					<div class="modal-body">
+						<div class="modal-user-left">
+							<form id="form-user-login" name="userLogin" novalidate>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											<i class="fa fa-lg fa-user fa-fw"></i>
+											<input name="email" type="text" placeholder="请输入登录邮箱" ng-model="email" class="form-control" required autofill />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											<i class="fa fa-lg fa-lock fa-fw"></i>
+											<input name="password" type="password" placeholder="请输入密码" ng-model="password" class="form-control" required autofill />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<h5 class="col-xs-12 text-muted remove margin top">
+										<a href="javascript:void(0)" class="pull-left" ng-click="toggleRememberPassword()">
+											<i class="fa" ng-class="rememberPassword?'fa-check-square':'fa-square'"></i> 记住我</a>
+										<a href="javascript:void(0)" class="pull-right" ng-click="switchView('forgetPassword')">忘记密码？</a>
+									</h5>
+								</div>
+								<div class="row">
+									<div class="col-xs-6">
+										<h5 class="text-danger" ng-bind="errorMessage"></h5>
+									</div>
+									<div class="col-xs-6">
+										<button class="btn btn-success btn-block" ng-click="login()"
+										data-btn-loading="loading" data-loading-text="正在登录">登&nbsp;&nbsp;录</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-user-right">
+							<h5 class="text-muted">我还没有海投账号</h5>
+							<button class="btn btn-danger btn-block modal-topbutton" ng-click="switchView('register')">免费注册</button>
+							<h5 class="text-muted">我是企业HR</h5>
+							<a href="http://company.haitou.cc/" class="btn btn-warning btn-block">企业入口</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- 注册框 -->
+				<div class="modal-content" ng-show="modalView == 'register'">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title" id="myModalLabel">注&nbsp;&nbsp;册</h4>
+					</div>
+					<div class="modal-body">
+						<div class="modal-user-left">
+							<form id="form-user-register" name="userRegister" novalidate>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											<i class="fa fa-lg fa-user fa-fw"></i>
+											<input name="email" type="text" placeholder="请输入注册邮箱" ng-model="email" class="form-control" required autofill />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-7">
+										<div class="form-group">
+											<i class="fa fa-lg fa-tasks fa-fw"></i>
+											<input name="verifyCode" type="text" placeholder="请输入验证码" ng-model="code" class="form-control" required autocomplete="off" />
+										</div>
+									</div>
+									<div class="col-xs-5">
+										<a href="javascript:void(0)" title="点击更换验证码" ng-click="refreshVerifyCode()">
+										<img class="verify-code" data-baseurl="http://base.haitou.cc/public/randcode_small.php" /></a>
+									</div>
+								</div>
+								<div class="row">
+									<h5 class="col-xs-12 text-muted remove margin top">注册后可享受为你提供的更多功能哦！</h5>
+								</div>
+								<div class="row">
+									<div class="col-xs-6">
+										<h5 class="text-danger" ng-bind="errorMessage"></h5>
+									</div>
+									<div class="col-xs-6">
+										<button class="btn btn-danger btn-block" ng-click="register()"
+										data-btn-loading="loading" data-loading-text="正在注册">注&nbsp;&nbsp;册</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-user-right">
+							<h5 class="text-muted">我已有海投账号</h5>
+							<button class="btn btn-success btn-block modal-topbutton" ng-click="switchView('login')">立即登录</button>
+							<h5 class="text-muted">我是企业HR</h5>
+							<a href="http://company.haitou.cc/" class="btn btn-warning btn-block">企业入口</a>
+						</div>
+					</div>
+				</div>
+
+				<!-- 注册成功 -->
+				<div class="modal-content" ng-show="modalView == 'registerNotice'">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title" id="myModalLabel">注&nbsp;&nbsp;册</h4>
+					</div>
+					<div class="modal-body">
+						<div class="modal-user-left">
+							<h5 style="display: inline-block">我们已经向</h5>
+							<h4 class="text-success" style="display: inline-block" ng-bind="email"> </h4>
+
+							<h5>发送了验证邮件</h5>
+							<p>登录邮箱并点击验证链接即可继续注册</p>
+							<a class="btn btn-success btn-block" ng-href="{{openMailUrl}}" target="_blank"><i class="fa fa-envelope"></i> &nbsp;登录邮箱验证</a>
+						</div>
+						<div class="modal-user-right">
+							<h5>没有收到激活邮件？</h5>
+							<p><i class="fa fa-circle text-warning"></i> 尝试到垃圾邮件、广告邮件目录找找看</p>
+							<p><i class="fa fa-circle text-warning"></i> 您QQ邮箱设置了反垃圾拒收，可暂时关闭</p>
+							<p><i class="fa fa-circle text-warning"></i> 拼写有误？<a href="javascript:void(0)" ng-click="switchView('register')">换个邮箱</a></p>
+							<p><i class="fa fa-circle text-warning"></i> 换了邮箱依旧没有收到？<a href="http://wpa.qq.com/msgrd?v=3&uin=3083556504&site=qq&menu=yes" target="_blank">联系客服</a></p>
+						</div>
+					</div>
+				</div>
+
+				<!-- 忘记密码表单 -->
+				<div class="modal-content" ng-show="modalView == 'forgetPassword'">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title" id="myModalLabel">忘记密码</h4>
+					</div>
+					<div class="modal-body">
+						<div class="modal-user-left">
+							<form id="form-user-register" name="userForgetPassword" novalidate>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="form-group">
+											<i class="fa fa-lg fa-user fa-fw"></i>
+											<input name="email" type="text" placeholder="请输入注册邮箱" ng-model="email" class="form-control" required autofill />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-7">
+										<div class="form-group">
+											<i class="fa fa-lg fa-tasks fa-fw"></i>
+											<input name="verifyCode" type="text" placeholder="请输入验证码" ng-model="code" class="form-control" required autocomplete="off" />
+										</div>
+									</div>
+									<div class="col-xs-5">
+										<a href="javascript:void(0)" title="点击更换验证码" ng-click="refreshVerifyCode()">
+											<img class="verify-code" data-baseurl="http://base.haitou.cc/public/randcode_small.php" /></a>
+									</div>
+								</div>
+								<div class="row">
+									<h5 class="col-xs-12 text-muted remove margin top">
+										通过邮箱来重置密码。
+										<a href="javascript:void(0)" class="pull-right" ng-click="switchView('login')">返回登录</a>
+									</h5>
+								</div>
+								<div class="row">
+									<div class="col-xs-6">
+										<h5 class="text-danger" ng-bind="errorMessage"></h5>
+									</div>
+									<div class="col-xs-6">
+										<button class="btn btn-danger btn-block" ng-click="forgetPassword()"
+										data-btn-loading="loading" data-loading-text="正在处理">重置密码</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-user-right">
+							<div class="modal-user-right">
+								<h5 class="text-muted">我还没有海投账号</h5>
+								<button class="btn btn-danger btn-block modal-topbutton" ng-click="switchView('register')">免费注册</button>
+								<h5 class="text-muted">我是企业HR</h5>
+								<a href="http://company.haitou.cc/" class="btn btn-warning btn-block">企业入口</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 忘记密码提示 -->
+				<div class="modal-content" ng-show="modalView == 'forgetPasswordNotice'">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title" id="myModalLabel">忘记密码</h4>
+					</div>
+					<div class="modal-body" id="modal-body">
+						<div class="modal-user-left">
+							<h5 style="display: inline-block">我们已经向</h5>
+							<h4 class="text-success" style="display: inline-block" ng-bind="email"> </h4>
+
+							<h5>发送了验证邮件</h5>
+							<p>登录邮箱并点击验证链接即可重置密码</p>
+							<a class="btn btn-success btn-block" ng-href="{{openMailUrl}}" target="_blank"><i class="fa fa-envelope"></i> &nbsp;登录邮箱验证</a>
+						</div>
+						<div class="modal-user-right">
+							<h5>没有收到激活邮件？</h5>
+							<p><i class="fa fa-circle text-warning"></i> 尝试到垃圾邮件、广告邮件目录找找看</p>
+							<p><i class="fa fa-circle text-warning"></i> 您QQ邮箱设置了反垃圾拒收，可暂时关闭</p>
+							<p><i class="fa fa-circle text-warning"></i> 拼写有误？<a href="javascript:void(0)" ng-click="switchView('register')">换个邮箱</a></p>
+							<p><i class="fa fa-circle text-warning"></i> 换了邮箱依旧没有收到？<a href="http://wpa.qq.com/msgrd?v=3&uin=3083556504&site=qq&menu=yes" target="_blank">联系客服</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<div id="page-wrapper">
+		<div id="kz-web"  class="fadeIn animated">
+			<div class="row">
+
+				<div class="top-gg-left">
+	<div class="page-header">
+		<h3 class="heading text-ellipsis">
+			<a href="javascript:void(0)"><i id="saveBtn" class="fa fa-star-o text-warning" data-is-save="0"></i></a>企业招聘：秦皇岛康姿百德高新技术开发有限公司（小型双选会）		</h3>
+	</div>
+	<div class="col-xs-12">
+		<div class="panel-box">
+			<div class="row article-info-box">
+				<div class="col-xs-6">
+					<p class="text-ellipsis remove margin top">来源<span class="margin left">北京师范大学</span></p>
+					<p class="text-ellipsis">时间<span id="holdTime" class="margin left">2015-04-16 09:00 (周四)</span></p>
+					<p class="text-ellipsis">地点<span class="margin left">学十六楼多功能厅</span></p>
+				</div>
+				<div class="col-xs-6">
+					<p class="text-ellipsis remove margin top">发布时间<span class="margin left">2015-03-06 17:35</span></p>
+					<p class="text-ellipsis">发布来源<span class="margin left">北京师范大学学生就业指导中心</span></p>
+					<p class="text-ellipsis">点击次数<span class="margin left">222</span></p>
+				</div>
+				<p class="col-xs-12 remove margin top text-ellipsis">标签<span class="margin left">管理 技术 自动化 培训 研发 管理培训生 本科 安全 品牌 产品 </span></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+				<div class="panel-box top-gg" id="top-gg">
+	<div class="top-gg-img pull-left">
+					<a href="http://sxxx.haitou.cc/" target="_blank">
+				<img src="http://ad.haitou.cc/image/ad_c.jpg" alt="海投网实习信息 专注于实习生招聘" />
+				<div>海投网实习信息 专注于实习生招聘</div>
+			</a>
+					<a href="http://zph.haitou.cc/" target="_blank">
+				<img src="http://ad.haitou.cc/image/ad_d.jpg" alt="海投网招聘会 热门场馆大型招聘会汇总" />
+				<div>海投网招聘会 热门场馆大型招聘会汇总</div>
+			</a>
+					<a href="http://xyzp.haitou.cc/" target="_blank">
+				<img src="http://ad.haitou.cc/image/ad_b.jpg" alt="海投网招聘信息 海量信息一网打尽" />
+				<div>海投网招聘信息 海量信息一网打尽</div>
+			</a>
+			</div>
+	<div class="top-gg-tbna pull-right">
+					<a href="javascript:void(0)">
+				<div class="opacity_0"></div>
+				<img src="http://ad.haitou.cc/image/ad_c.jpg" class="smargin bottom" alt="" />
+			</a>
+					<a href="javascript:void(0)">
+				<div class="opacity_0"></div>
+				<img src="http://ad.haitou.cc/image/ad_d.jpg" class="smargin bottom" alt="" />
+			</a>
+					<a href="javascript:void(0)">
+				<div class="opacity_0"></div>
+				<img src="http://ad.haitou.cc/image/ad_b.jpg" class="smargin bottom" alt="" />
+			</a>
+			</div>
+</div>
+
+			</div>
+
+			<data class="hide">
+	<input id="infoId" type="hidden" value="208655" />
+	<input id="infoStr" type="hidden" value="208655|北师大|秦皇岛康姿百德高新技术开发有限公司|企业招聘：秦皇岛康姿百德高新技术开发有限公司（小型双选会）" />
+	<input id="frameUrl" type="hidden" value="http://career.bnu.edu.cn/JobInfomationNr.aspx?catid=471&newsid=27303" />
+</data>
+<data class="hide" id="userSaveInfo">[]</data>
+<data class="hide" id="assocPageJson">[]</data>
+
+<div class="row">
+	<div class="col-md-9 preach-child-info-content">
+		<div class="panel panel-default">
+			<!-- Baidu Button BEGIN -->
+			<div class="bdsharebuttonbox pull-right preach-share" data="">
+				<span class="pull-left">分享到：</span>
+				<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+				<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+				<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+				<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+				<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+				<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+				<a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+				<a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+				<a href="#" class="bds_print" data-cmd="print" title="打印页面"></a>
+				<a href="#" class="bds_more" data-cmd="more"></a>
+			</div>
+			<script>
+				window._bd_share_config = {
+					"common" : {
+						"bdText" : '秦皇岛康姿百德高新技术开发有限公司，宣讲会时间：2015-04-16 09:00，举办地点：【北京师范大学】学十六楼多功能厅。详细信息请查看 海投·宣讲会查询系统',
+						"bdDesc" : '【海投网·宣讲会查询系统】秦皇岛康姿百德高新技术开发有限公司将于2015-04-16 09:00在北京师范大学学十六楼多功能厅举办宣讲会，信息来源为北京师范大学学生就业指导中心。详细信息请查看 http://xjh.haitou.cc/article/208655.html',
+						"bdUrl" : 'http://xjh.haitou.cc/article/208655.html',
+						"bdPic" : 'http://xjh.haitou.cc/image/share.png',
+						"bdMini":"1","bdPopupOffsetLeft":"","bdSize":"16"
+					},
+					"share" : {}
+				}
+			</script>
+			<!-- Baidu Button END -->
+
+			<div class="panel-heading">正文介绍</div>
+			<div class="panel-body panel-body-text">
+				<dt>企业招聘：秦皇岛康姿百德高新技术开发有限公司（小型双选会）
+	<br> <tt>
+		
+	举办日期：2015-04-16 举办时间：09:00-12:00 举办地点：学十六楼 多功能厅 点击率：1</tt>
+	</dt>
+	<dd>
+	   <P><FONT style="FONT-FAMILY: 黑体; FONT-SIZE: 16px">一、用人单位简介</FONT></P>
+<P>&nbsp;&nbsp;&nbsp; 秦皇岛康姿百德高新技术开发有限公司成立于2004年，是一家集研发、生产、销售磁性健康寝具为一体的高科技企业。公司以“推广健康科技、造就百岁民族”为宗旨，以“打造全球健康产业第一科技品牌”为目标，秉承“诚信经营、永续发展、回馈社会、造福人类”的经营理念，致力于提升生命品质、推广人类健康的伟大事业。</P>
+<P></P>
+<P>康姿百德两大核心竞争力：</P>
+<P>【科技成就】康姿百德的核心竞争力之一：强大的技术研发能力！</P>
+<P>一、仿古地磁发生器：</P>
+<P>高等医学院校的康复治疗教材《理疗学》的其中一章，专门阐述了“磁场疗法”在康复医学领域的重要地位。康姿百德在不提高磁场强度、保证安全性的前提下，使得“磁场疗法”的效果得到了颠覆性的提高。</P>
+<P>“传统磁疗设备”磁场穿透力只有6CM，想提高30%都很难。</P>
+<P>“仿古地磁发生器”磁场穿透力达60CM以上，整整提高了10倍。</P>
+<P>&nbsp;</P>
+<P>二、世界上第一条磁性寝具自动化生产线：</P>
+<P>&nbsp;</P>
+<P>利用“仿古地磁发生器”这项突破性的技术成果，我们设计出了世界上第一条完全具有自主知识产权的自动化生产线。整个线体将EPS垫体成型机、压敏型垫体<A title=热熔复合机 href="http://www.baike.com/sowiki/ç&shy;çå¤åæº?prd=content_doc_search">热熔复合机</A>、全自动无人化大型包装机、多头数控<A title=超声焊 href="http://www.baike.com/sowiki/è¶å£°ç?prd=content_doc_search">超声焊</A>接机等多台设备实现自动化联动控制。这是迄今为止工艺最先进、自动化程度最高的磁性寝具自动化生产线。&nbsp;&nbsp;</P>
+<P>三、脑血栓康复治疗设备（战略性产品）：</P>
+<P>脑血栓后遗症的康复技术一直是当代康复医疗界的重点医学难题，近30年没有突破性进展。</P>
+<P>经初步临床效果验证，今天我们所研制的脑血栓康复设备（长9米）在疗效上终于有了突破性的进展（技术指标目前处于高度保密阶段）。该设备将是康姿百德“连锁康复医院“的最核心部分。研发工作将于2014年底收尾，它的诞生将在康复医疗界轰动。</P>
+<P>【西点商学院】康姿百德核心竞争力之二——强大的培训体系</P>
+<P>一、&nbsp;办学总纲：</P>
+<P>康姿百德所创立的“西点商学院”，引进美国西点军校的教学精髓，重塑了领导者的卓越影响力和优异品格，锻造了一种世上极度缺少的精神——在任何情况下都能克服种种阻力战胜困难的西点军魂！她既是成就企业英雄辈出的舞台，又是企业战略变革中人才输出的源泉。牵引一匹匹奔腾的黑马，在这幅世界级健康产业的宏伟蓝图上规划出自己明确的人生沿线。&nbsp;</P>
+<P>二、课程设置：</P>
+<P>“西点商学院”立足于“取势、明道、优术”的战略指引思想，全面超越“教学工厂”式的流水教学，产生了一系列诸如“站在太阳看地球”等开天窗式的原创管理思想。</P>
+<P>“西点商学院”设置7+13+20职场多模式培训课程，通过“情景模拟”、“管理案例再现”等多种教学方法让学员身临其境的去感悟企业管理的深刻内涵。</P>
+<P><FONT style="FONT-FAMILY: 黑体; FONT-SIZE: 16px">二、招聘信息</FONT></P>
+<P>【年薪18万】——聘中国最优秀的管培生</P>
+<P>康姿百德今起招聘2015年 “管理培训生”，欢迎各位应届毕业生积极报名，报名方法在篇尾。</P>
+<P>【招聘岗位】管理培训生</P>
+<P>&nbsp;</P>
+<P>【岗位要求】</P>
+<P>￭985院校本科及以上学历；</P>
+<P>￭有思想深度和宽度；</P>
+<P>￭具备严谨的学习和工作态度；</P>
+<P>￭立志成为优秀企业管理者；</P>
+<P>￭具备管理潜质（需要通过康姿百德专业测评）。</P>
+<P>&nbsp;</P>
+<P>【薪酬福利】</P>
+<P>￭月薪15000元起；</P>
+<P>￭五险一金、年终奖金、带薪年假、带薪旅游…</P>
+<P>【工作地点】</P>
+<P>￭日常在北京、秦皇岛办公</P>
+<P>￭根据需求全国各地出差</P>
+<P>【联系方式】人力资源部手机：15232335053 &nbsp;&nbsp;座机：0335—7610001转8026</P>
+<P>【简历投递邮箱】<A href="mailto:kzbd_gj@163.com">kzbd_gj@163.com</A>；</P>
+<P>了解更多招聘信息及招聘会行程，请关注康姿百德新浪官方微博：@康姿百德招聘总部</P>
+<P>&nbsp;</P>
+<P>【报名方法】</P>
+<P>请您在宣讲会之前登录公司官网<A href="http://www.kzbd.cn/">www.kzbd.cn</A>,点击首页导航栏“加入我们”，进行简历投递（网申）。</P>
+<P></P>
+<P>&nbsp;</P> 
+	</dd>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3 preach-child-wing">
+		<div class="row">
+			<div class="col-xs-6 col-md-12">
+				<div class="panel panel-default preach-child-scan">
+					<div class="panel-heading">最近浏览过</div>
+					<div id="lastReadPage" class="panel-body"></div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-12">
+				<div class="panel panel-default preach-child-other">
+					<div class="panel-heading">看过此信息的人还看过</div>
+					<div id="assocPage" class="panel-body"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+			<div class="row footer">
+				<div class="col-xs-12">
+
+					
+
+					<p class="frelink">
+						友情链接：
+						<a href="http://weibo.com/nadc" target="_blank">海投网微博</a>
+													<a href="http://career.tsinghua.edu.cn/" target="_blank">清华大学毕业生就业信息网</a>
+							<a href="http://scc.pku.edu.cn/" target="_blank">北京大学学生就业指导服务中心</a>
+							<a href="http://job.bit.edu.cn/" target="_blank">北京理工大学学生就业指导中心</a>
+											</p>
+					<p class="copy">&copy; Copyright 2014. All Rights Reserved 海投网&nbsp;&nbsp;·&nbsp;&nbsp;武汉鸣鸾信息科技有限公司 <a href="http://company.haitou.cc/" target="_blank">企业入口</a>意见反馈：<a href="http://wpa.qq.com/msgrd?v=3&uin=3083556504&site=qq&menu=yes" target="_blank" title="点击这里联系客服QQ"><img src="http://base.haitou.cc/image/feedback.gif" alt="意见反馈"></a></p>
+				</div>
+			</div>
+		</div>
+
+		
+
+		<div class="global-alert alert alert-dismissable">
+			<button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+			<span></span>
+		</div>
+
+	</div>
+
+	<div id="yz-web" class="">
+	<i class="fa fa-5x fa-spinner fa-spin text-success"></i>
+</div>
+<div class="kz-div xf-div">
+	<p>原站模式</p>
+	<div class="has-switch">
+		<div class="switch-off switch-animate">
+			<span class="switch-left switch-kz">开启</span>
+			<label>&nbsp;</label>
+			<span class="switch-right">关闭</span>
+		</div>
+	</div>
+</div>
+
+
+</div>
+
+<script type="text/javascript" src="http://base.haitou.cc/assets/jquery.min.js?v=1426436069"></script>
+<!--[if lte IE 7]>
+<script type="text/javascript" src="http://base.haitou.cc/src/ie8/iebug.js"></script>
+<![endif]-->
+<script type="text/javascript" src="http://base.haitou.cc/assets/angular.min.js?v=1426436072"></script>
+<script type="text/javascript" src="http://base.haitou.cc/assets/bootstrap.min.js?v=1426436070"></script>
+<script type="text/javascript" src="http://base.haitou.cc/assets/plugin.min.js?v=1426436073"></script>
+<script type="text/javascript" src="http://base.haitou.cc/assets/app.min.js?v=1426436073"></script>
+
+
+
+
+
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/article.js"></script>
+<script type="text/javascript" src="/js/ajax.js"></script>
+<script type="text/javascript">
+
+	var KzWebHeight = 0;  //#kz-web内所有div的高度和
+
+	$(document).bind("ready", function(){
+		$('#kz-web').children().each(function(){
+			KzWebHeight += $(this).height();
+		});
+
+		$('#kz-web').scroll(function(){
+			if((KzWebHeight+$('.navbar-static-top').height()-$('#kz-web').scrollTop()-$(this).height()) < $('.footer').height() - 150){
+				//$('.xf-div').addClass('fadeOut');
+				$('.xf-div').fadeOut();
+			}
+			else
+				//$('.xf-div').removeClass('fadeOut');
+				$('.xf-div').fadeIn();
+		});
+
+		//快照切换
+		$('.has-switch').click(function(){
+			if($('#frameUrl')[0].value == ''){
+				alert('抱歉！该信息没有原站模式');  //可以以更优雅的方式提示 待改进
+				return;
+			}
+			$(this).find('.switch-animate').toggleClass('switch-on').toggleClass('switch-off');
+			if($(this).find('.switch-animate').hasClass('switch-on')){
+				if($('#yz-web iframe').length < 1){
+					var iframe = $('<iframe frameborder="0" id="web"></iframe>');
+					iframe[0].src = $('#frameUrl')[0].value;
+					iframe.bind("load", function(){
+						$('#yz-web i').fadeOut();
+					});
+					$('#yz-web').append(iframe);
+					//iframe.height($(window).height()-$('.navbar-static-top').height()-4);
+					//只在初始化时做iframe大小调整 会导致在初始化后resize就会出bug 待修改
+				}
+				$('#yz-web').fadeIn();  //适应IE
+			}else if($(this).find('.switch-animate').hasClass('switch-off')){
+				$('#yz-web').fadeOut();  //适应IE
+			}
+		});
+	});
+
+</script>
+<script type="text/javascript">
+	with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+
+</body>
+
+<div style="display:none;"><script src="http://s22.cnzz.com/stat.php?id=5006844&web_id=5006844" language="JavaScript"></script></div>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

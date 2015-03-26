@@ -208,8 +208,8 @@ class EventSpider(CrawlSpider):
                 city = getmatch(pattern, city)
 
 
-                #print title
-                #print city
+                print title
+                print city
 
                 self.attributes[link] = [city, title, imageurl]
 

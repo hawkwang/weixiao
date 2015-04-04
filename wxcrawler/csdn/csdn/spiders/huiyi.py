@@ -214,6 +214,7 @@ class HuiyiSpider(CrawlSpider):
         eventdate = getDate(datetime)  
         datetime = response.xpath('//div[@class="addr-time"]//li[1]/text()').extract()[0]
         eventtime = getTime(datetime)
+        print datetime
 
         #get raw image
         imageurl = response.xpath('//img[@class="ads"]/@src').extract()

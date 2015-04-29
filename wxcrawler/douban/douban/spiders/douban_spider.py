@@ -231,25 +231,27 @@ class DoubanSpider(CrawlSpider):
  
         #get raw datetime
         try:
-            datetime = hxs.xpath('//div[1]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/p/text()').extract()[0]
+            datetime = hxs.xpath('//div[2]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/p').extract()[0]
+            #datetime = hxs.xpath('//div[1]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/p/text()').extract()[0]
         except:
             print 'try another format...'
-            datetime = hxs.xpath('//div[1]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div/div[1]/div[2]/text()').extract()[0]
+            datetime = hxs.xpath('//div[2]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div/div[1]/div[2]/text()').extract()[0]
 
         eventdate = getDate(datetime)        
         eventtime = getTime(datetime)        
 
         #get raw place
         try:
-            place = hxs.xpath('///div[1]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/p[1]/span[2]/text()').extract()[0]
+            place = hxs.xpath('//div[2]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/p[1]/span[1]/text()').extract()[0]
+            #place = hxs.xpath('///div[1]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/p[1]/span[2]/text()').extract()[0]
         except:
-            place = hxs.xpath('//div[1]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/text()').extract()[0]
+            place = hxs.xpath('//div[2]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div/div[2]/div[2]/div[1]/text()').extract()[0]
 
         #get raw city
         city = getCity(place)
        
         #get raw category
-        category = hxs.xpath('//div[1]/div/div[2]/div[1]/div[1]/div[2]/p/a[2]/text()').extract()[0]
+        category = hxs.xpath('//div[2]/div/div[2]/div[1]/div[1]/div[2]/p/a[2]/text()').extract()[0]
         #category = ''
         print 'category - ' + category
 

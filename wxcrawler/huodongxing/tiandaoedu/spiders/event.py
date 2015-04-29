@@ -205,22 +205,22 @@ def getLocation(content):
 def getUrls():
     urls = []
     baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=n&city=北京&page='
-    for category in range(1,10):
+    for category in range(1,50):
         url1 = baseUrl + str(category)
         urls.append(url1)
     #end for
 
-    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=v&city=北京&page='
-    for category in range(1,10):
-        url1 = baseUrl + str(category)
-        urls.append(url1)
-    #end for
+#    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=v&city=北京&page='
+#    for category in range(1,10):
+#        url1 = baseUrl + str(category)
+#        urls.append(url1)
+#    #end for
 
-    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=r&city=北京&page='
-    for category in range(1,10):
-        url1 = baseUrl + str(category)
-        urls.append(url1)
-    #end for
+#    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=r&city=北京&page='
+#    for category in range(1,10):
+#        url1 = baseUrl + str(category)
+#        urls.append(url1)
+#    #end for
 
     return urls
 #end def

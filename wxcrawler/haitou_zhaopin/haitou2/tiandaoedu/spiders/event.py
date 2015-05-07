@@ -14,7 +14,7 @@ import re
 import random
 from tiandaoedu.items import WeixiaoItem
 #import redis
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 
 def getUniversityDict():
     dict = {}

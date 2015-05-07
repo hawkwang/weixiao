@@ -14,7 +14,7 @@ import sys
 import re
 import random
 from tiandaoedu.items import WeixiaoItem
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 
 def UrlChecker(url):
     regex = re.compile(

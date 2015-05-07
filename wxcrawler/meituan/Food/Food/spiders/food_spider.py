@@ -17,6 +17,24 @@ def getmatch(pattern, content):
     return False
 #enddef
 
+def getDate(content):
+    if (content==False):
+        return ''
+    content = content.replace('/','.')
+    pattern = u'(\d{4}-\d{1,2}-\d{1,2}|\d{4}\.\d{1,2}\.\d{1,2}|\d{4}年\d{1,2}月\d{1,2}日)'
+    date_result = getmatch(pattern, content)
+
+    if (date_result==False):
+        return ''
+
+    date_result = re.sub(u'(年|月|日|\-)','.',date_result)
+    date_result = getmatch(u'\d{4}.\d{1,2}.\d{1,2}', date_result)
+    if (date_result==False):
+        return ''
+
+    return date_result
+#enddef
+
 def getFee(content):
     if(content==False):
         return '';
@@ -43,7 +61,8 @@ class food_spider(scrapy.Spider):
         sys.setdefaultencoding('utf-8')
  	name = "food.org"
 	start_urls = [
-	"http://bj.meituan.com/category/meishi/all/"
+	"http://bj.meituan.com/category/meishi"
+	#"http://bj.meituan.com/category/meishi/all/"
 	#"http://bj.meituan.com/category/meishi/all/page1"
 	]
 	#start_urls = ["http://bj.meituan.com/deal/27597943.html"]
@@ -94,7 +113,10 @@ class food_spider(scrapy.Spider):
 		time = time
 		
 		dates = sel.xpath('//div[@class="deal-term"]/dl/dd/text()').extract()[0]#.re('\d{4}\.\d{1,2}\.\d{1,2}')
-		date = re.findall(r'\d{4}\.\d{1,2}\.\d{1,2}', dates).pop()
+                print "hawk testing - dates - " + dates
+		date = re.findall(u'\d{4}\.\d{1,2}\.\d{1,2}|\d{4}年\d{1,2}月\d{1,2}日', dates).pop()
+                date = getDate(date)
+                print "hawk testing - date - " + date
 
 		desc1 = response.xpath('//div[@class="deal-component-description"]/text()').extract()
 		desc2 = response.xpath('//div[@id="anchor-bizinfo"]/div/p/text()').extract()

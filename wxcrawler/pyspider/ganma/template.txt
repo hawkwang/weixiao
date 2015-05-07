@@ -190,7 +190,7 @@ class Handler(BaseHandler):
             
             self.crawl(detailpage, callback=self.detail_page)
 
-    @config(priority=2)
+    @config(priority=2, force_update=True)
     def detail_page(self, response):
         #print response.url
         logo = 'http://ganma.papayamobile.com' + response.doc('.imgs img').attr.src
@@ -291,3 +291,5 @@ class Handler(BaseHandler):
     
     
     
+
+

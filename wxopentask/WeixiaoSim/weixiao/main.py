@@ -44,7 +44,7 @@ def validate_date(d):
 #end def
 
 def validate_time(t):
-    print 'validate time : ' + t
+    #print 'validate time : ' + t
     try:
         datetime.strptime(t, '%H:%M')
         return True
@@ -82,7 +82,7 @@ def mysleep(count):
     if(count!=0):
         if(count>6):
             count = 6
-        print '[WeixiaoSim : ' + get_current_time_str()  + '] - sleep ' + str(count*10) + ' seconds...'
+        #print '[WeixiaoSim : ' + get_current_time_str()  + '] - sleep ' + str(count*10) + ' seconds...'
         time.sleep(count*10)
 #enddef
 
@@ -112,11 +112,11 @@ class WeixiaoSim(object):
                 sleepcount = sleepcount + 1
             #endif
 
-            print '[WeixiaoSim : ' + get_current_time_str()  + '] - new loop to see if we have newly found events...' 
+            #print '[WeixiaoSim : ' + get_current_time_str()  + '] - new loop to see if we have newly found events...' 
             for instance in session.query(Events).filter(Events.status=='0').filter(Events.city=='beijing').order_by(Events.date, Events.time).limit(10000):
                 #flag = True
                 sleepcount = 0
-                print 'Processing event - ' + instance.title.encode('utf-8') + ' ' + instance.place.encode('utf-8')
+                #print 'Processing event - ' + instance.title.encode('utf-8') + ' ' + instance.place.encode('utf-8')
                 source = instance.source
                 title = instance.title
                 desc = instance.desc
@@ -128,9 +128,9 @@ class WeixiaoSim(object):
                 feelist = instance.feelist
                 imageurl = instance.image
                 originurl = instance.link
-                print place.encode('utf-8')
-                print date
-                print time
+                #print place.encode('utf-8')
+                #print date
+                #print time
 
                 if is_num(fee) == False :
                     instance.status = '2'
@@ -152,7 +152,7 @@ class WeixiaoSim(object):
                 event_time = build_datetime(year, month, day, hour, minute)
                 current_china_datetime = datetime.now(pytz.timezone('Asia/Shanghai'))
                 if (event_time.isoformat(' ') <= current_china_datetime.isoformat(' ')) :
-                    print 'Note: ' + title + ' with date '+ date + ' ' + time + ' is obsolete. So we will skip it...'
+                    print '[WeixiaoSim : ' + get_current_time_str()  + 'processing: ' + title + ' with date '+ date + ' ' + time + ' is obsolete. So we will skip it...'
                     instance.status = '1'
                     session.commit()
                     continue
@@ -162,19 +162,19 @@ class WeixiaoSim(object):
                 if loc_details['status']==1:
                     #raw_input("Press Enter to continue...")
                     # FIXME - put this strange address into TBD_address table
-                    print 'Note: ' + title + ' with place (' + place + ') is strange. So we will skip it...'
+                    print '[WeixiaoSim : ' + get_current_time_str()  + 'processing: ' + title + ' with place (' + place + ') is strange. So we will skip it...'
                     instance.status = '3'
                     session.commit()
                     continue
                 #endif
                     
-                print loc_details['formatted_address'].encode('utf-8')
-                print loc_details['province'].encode('utf-8')
-                print loc_details['city'].encode('utf-8')
-                print loc_details['areaname'].encode('utf-8')
-                print loc_details['areacode'].encode('utf-8')
-                print loc_details['longitude']
-                print loc_details['latitude']
+                #print loc_details['formatted_address'].encode('utf-8')
+                #print loc_details['province'].encode('utf-8')
+                #print loc_details['city'].encode('utf-8')
+                #print loc_details['areaname'].encode('utf-8')
+                #print loc_details['areacode'].encode('utf-8')
+                #print loc_details['longitude']
+                #print loc_details['latitude']
             
                 #wrap info into potentialItem
                 potentialItem = {}
@@ -270,15 +270,15 @@ class WeixiaoSim(object):
         eventinfo['fee_description'] = potentialItem['feelist']
         eventinfo['price'] = potentialItem['fee']
         eventinfo['fixnum'] = '100'
-        print eventinfo
+        print '[WeixiaoSim : ' + get_current_time_str()  + '] - adding: ' + eventinfo['title'] + "-" + eventinfo['originurl']
         try:
             url = self.url  #'http://wxlele.local/api/'
             eventinfo_json = json.dumps(eventinfo)
-            print eventinfo_json
+            #print eventinfo_json
             info = urllib.urlencode({"AK":"robot.weixiao@1234567", "source":potentialItem['source'], "event":eventinfo_json})
             #print info
             response = urllib2.urlopen(url, info).read()
-            print response
+            #print response
             json_data = json.loads(response)
             #print json_data['messageType']
         except Exception, e:

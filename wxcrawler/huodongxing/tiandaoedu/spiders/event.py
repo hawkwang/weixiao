@@ -210,17 +210,17 @@ def getUrls():
         urls.append(url1)
     #end for
 
-#    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=v&city=北京&page='
-#    for category in range(1,10):
-#        url1 = baseUrl + str(category)
-#        urls.append(url1)
-#    #end for
+    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=v&city=北京&page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
 
-#    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=r&city=北京&page='
-#    for category in range(1,10):
-#        url1 = baseUrl + str(category)
-#        urls.append(url1)
-#    #end for
+    baseUrl = 'http://bj.huodongxing.com/eventlist?orderby=r&city=北京&page='
+    for category in range(1,10):
+        url1 = baseUrl + str(category)
+        urls.append(url1)
+    #end for
 
     return urls
 #end def

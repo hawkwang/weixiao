@@ -198,7 +198,7 @@ class Handler(BaseHandler):
             
             
             
-         datetime1 = response.doc('time#event-start-time').attr.datetime
+         datetime1 = response.doc('div#event-when-display time').attr.datetime
          print datetime1
          
          date = getDate(datetime1)

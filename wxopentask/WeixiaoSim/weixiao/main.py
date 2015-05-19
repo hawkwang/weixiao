@@ -270,7 +270,7 @@ class WeixiaoSim(object):
         eventinfo['fee_description'] = potentialItem['feelist']
         eventinfo['price'] = potentialItem['fee']
         eventinfo['fixnum'] = '100'
-        print '[WeixiaoSim : ' + get_current_time_str()  + '] - adding: ' + eventinfo['title'] + "-" + eventinfo['originurl']
+        print '[WeixiaoSim : ' + get_current_time_str()  + '] - adding: ' + eventinfo['title'] + "(" + eventinfo['date'] + ")-" + eventinfo['originurl']
         try:
             url = self.url  #'http://wxlele.local/api/'
             eventinfo_json = json.dumps(eventinfo)

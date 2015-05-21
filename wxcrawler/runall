@@ -1,22 +1,18 @@
 cd csdn
-./runme &
+scrapy crawl huiyi >/dev/null 2>&1 &
 cd ..
 cd libcapital
-./runme &
-cd ..
-cd tiandaoedu
-./runme &
+scrapy crawl event >/dev/null 2>&1 &
 cd ..
 cd  crawler-1
-./runme &
+scrapy crawl weixiao >/dev/null 2>&1 &
 cd ..
 cd douban
-./runme &
-cd ..
-cd lvye
-./runme &
+scrapy crawl douban >/dev/null 2>&1 &
 cd ..
 cd huodongxing
-./runme &
+scrapy crawl event >/dev/null 2>&1 &
 cd ..
-
+cd chekucafe
+scrapy crawl chekucafe >/dev/null 2>&1 &
+cd ..

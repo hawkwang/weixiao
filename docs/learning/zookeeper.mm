@@ -2,7 +2,7 @@
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
 <node CREATED="1431563822998" ID="ID_1825471418" MODIFIED="1431651853621" TEXT="zookeeper">
 <font BOLD="true" NAME="SansSerif" SIZE="12"/>
-<node CREATED="1431564253999" ID="ID_1098404943" MODIFIED="1432018495130" POSITION="right" TEXT="&#x52bf; - Challenges: common distributed coordination tasks">
+<node CREATED="1431564253999" FOLDED="true" ID="ID_1098404943" MODIFIED="1432020794608" POSITION="right" TEXT="&#x52bf; - Challenges: common distributed coordination tasks">
 <node CREATED="1431564278271" ID="ID_423362975" MODIFIED="1431564286411" TEXT="configuration management"/>
 <node CREATED="1431564286913" ID="ID_945558149" MODIFIED="1431564293109" TEXT="naming service">
 <node CREATED="1431564349078" ID="ID_1016961318" MODIFIED="1431564357859" TEXT="service discovery"/>
@@ -33,7 +33,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1432001652609" ID="ID_1890604219" MODIFIED="1432001655450" TEXT="details">
+<node CREATED="1432001652609" FOLDED="true" ID="ID_1890604219" MODIFIED="1432020792302" TEXT="details">
 <node CREATED="1431564239275" ID="ID_720709713" MODIFIED="1432018054154" TEXT="zookeeper ensemble">
 <node CREATED="1431572101448" FOLDED="true" ID="ID_1885958200" MODIFIED="1431999537277" TEXT="quorum">
 <node CREATED="1431572076559" ID="ID_317506402" MODIFIED="1431572128151" TEXT="zookeeper instances are working in a leader / follower format"/>
@@ -245,7 +245,7 @@
 </node>
 </node>
 </node>
-<node CREATED="1432004128725" ID="ID_526737468" MODIFIED="1432004144617" TEXT="programming with zookeeper">
+<node CREATED="1432004128725" FOLDED="true" ID="ID_526737468" MODIFIED="1432020790682" TEXT="programming with zookeeper">
 <node CREATED="1432004152799" ID="ID_565918033" MODIFIED="1432004156194" TEXT="Java">
 <node CREATED="1432004172374" ID="ID_954199359" MODIFIED="1432004173730" TEXT="http://zookeeper.apache.org/doc/r3.4.6/api/index.html"/>
 <node CREATED="1432013637096" ID="ID_398675645" MODIFIED="1432013637754" TEXT="Preparing your development environment">
@@ -274,13 +274,13 @@
 <node CREATED="1432019363751" FOLDED="true" ID="ID_1741679245" MODIFIED="1432019397909" TEXT="ZooKeeper recipes">
 <node CREATED="1432019392781" ID="ID_1284624286" MODIFIED="1432019395030" TEXT="These are implemented on the client side using ZooKeeper&apos;s programming model and require no special support from the server side."/>
 </node>
-<node CREATED="1432019302756" ID="ID_978228809" MODIFIED="1432019308626" TEXT="Barrier">
+<node CREATED="1432019302756" FOLDED="true" ID="ID_978228809" MODIFIED="1432020797548" TEXT="Barrier">
 <node CREATED="1432019428925" ID="ID_880165461" MODIFIED="1432019434434" TEXT="concepts">
 <node CREATED="1432019437247" ID="ID_704818185" MODIFIED="1432019459429" TEXT="Barrier is a type of synchronization method used in distributed systems to block the processing of a set of nodes until a condition is satisfied."/>
 <node CREATED="1432019460725" ID="ID_838135849" MODIFIED="1432019462018" TEXT="It defines a point where all nodes must stop their processing and cannot proceed until all the other nodes reach this barrier."/>
 </node>
 </node>
-<node CREATED="1432020019763" ID="ID_1566799284" MODIFIED="1432020026272" TEXT="Double barrier">
+<node CREATED="1432020019763" FOLDED="true" ID="ID_1566799284" MODIFIED="1432020798870" TEXT="Double barrier">
 <node CREATED="1432020029887" ID="ID_866433652" MODIFIED="1432020034403" TEXT="concepts">
 <node CREATED="1432020064116" ID="ID_858895501" MODIFIED="1432020071456" TEXT="the type of barrier that aids in synchronizing the beginning and end of a computation"/>
 <node CREATED="1432020103413" ID="ID_1208824487" MODIFIED="1432020104530" TEXT="The logic of a double barrier states that a computation is started when the required number of processes join the barrier."/>
@@ -288,10 +288,15 @@
 </node>
 </node>
 <node CREATED="1432020343395" ID="ID_1124030714" MODIFIED="1432020344639" TEXT="Queue"/>
+<node CREATED="1432020554530" ID="ID_1110086089" MODIFIED="1432020557522" TEXT="Lock"/>
+<node CREATED="1432020776382" ID="ID_392034488" MODIFIED="1432020783564" TEXT="Leader election"/>
+<node CREATED="1432020829011" ID="ID_520838652" MODIFIED="1432020835163" TEXT="Group membership"/>
+<node CREATED="1432020836078" ID="ID_72140020" MODIFIED="1432020844625" TEXT="Two-phase commit"/>
+<node CREATED="1432020849733" ID="ID_1726097841" MODIFIED="1432020858982" TEXT="Service discovery"/>
 </node>
 </node>
 <node CREATED="1431651214028" ID="ID_1381886383" MODIFIED="1431651309417" POSITION="right" TEXT="&#x672f; - how zookeeper help us?"/>
-<node CREATED="1431564500578" ID="ID_1874733229" MODIFIED="1431564502852" POSITION="right" TEXT="client">
+<node CREATED="1431564500578" FOLDED="true" ID="ID_1874733229" MODIFIED="1432020801907" POSITION="right" TEXT="client">
 <node CREATED="1431564438290" FOLDED="true" ID="ID_1371654271" MODIFIED="1431998782470" TEXT="client bindings">
 <node CREATED="1431564447078" ID="ID_1895666119" MODIFIED="1431564449466" TEXT="C"/>
 <node CREATED="1431564449913" ID="ID_5094464" MODIFIED="1431564451515" TEXT="Java">

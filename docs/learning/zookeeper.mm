@@ -270,7 +270,7 @@
 <node CREATED="1432004158668" ID="ID_1536864061" MODIFIED="1432004165998" TEXT="C"/>
 <node CREATED="1432004166463" ID="ID_762216601" MODIFIED="1432004168700" TEXT="Python"/>
 </node>
-<node CREATED="1432019279224" ID="ID_106699058" MODIFIED="1432019298470" TEXT="performing common distributed system tasks">
+<node CREATED="1432019279224" FOLDED="true" ID="ID_106699058" MODIFIED="1432262414226" TEXT="performing common distributed system tasks">
 <node CREATED="1432019363751" FOLDED="true" ID="ID_1741679245" MODIFIED="1432019397909" TEXT="ZooKeeper recipes">
 <node CREATED="1432019392781" ID="ID_1284624286" MODIFIED="1432019395030" TEXT="These are implemented on the client side using ZooKeeper&apos;s programming model and require no special support from the server side."/>
 </node>

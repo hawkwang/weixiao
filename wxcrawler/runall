@@ -16,3 +16,4 @@ cd ..
 cd chekucafe
 scrapy crawl chekucafe >/dev/null 2>&1 &
 cd ..
+
